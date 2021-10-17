@@ -7,7 +7,8 @@ https://www.voetbal.com/wedstrijdgegevens/ned-eredivisie-2020-2021-spieltag/34/
 With a lot of copy paste action it was possible to put the raw data together in an excel file.
 With excel it's possible to filter it to a nice sorted result.
 If found on internet a tool to convert excel data to an mysql database by using this: https://sqlizer.io/#/
-After that te first sql file of the Dutch Eredisie Season 2020/2021 could be added. 
+After that te first sql file of the Dutch football "Eredisie Season 2020/2021" could be added. The idea is to create more season database with the help of excel.
+
 
 
 
