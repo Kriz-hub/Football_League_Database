@@ -1,13 +1,16 @@
 Football League Database
 
-The idea is to make databases to view games sorted to clubs, but also to get better ranking results by altering default dates to custom dates.To do so you can see a ranking by choosing a part of a season. 
+The idea is to make databases of leages by entering match results between clubs.
+First a user must do a login to get to his own database.
+Then he can create his own league with clubs. When he wishes he can use data from for example the Premier League of a certain season.
+When data is entered then it's possible to view the ranking of the whole season or a part of that by changing end date or start date.
 
-But first a database must be created and therefore there is a source needed where playing results are stored. I didn't find good content on the internet but I found a dutch site with raw date results for world wide competitions here:
-https://www.voetbal.com/wedstrijdgegevens/ned-eredivisie-2020-2021-spieltag/34/
-With a lot of copy paste action it was possible to put the raw data together in an excel file.
-With excel it's possible to filter it to a nice sorted result.
-If found on internet a tool to convert excel data to an mysql database by using this: https://sqlizer.io/#/
-After that te first sql file of the Dutch football "Eredisie Season 2020/2021" could be added. The idea is to create more season databases with the help of excel.
+![front page](https://github.com/Kriz-hub/Football_League_Database/blob/main/wireframes/page1 login smaller.png)
+![front page](https://github.com/Kriz-hub/Football_League_Database/blob/main/wireframes/page2 smaller.png)
+![front page](https://github.com/Kriz-hub/Football_League_Database/blob/main/wireframes/page3 smaller.png)
+![front page](https://github.com/Kriz-hub/Football_League_Database/blob/main/wireframes/page4 smaller.png)
+![front page](https://github.com/Kriz-hub/Football_League_Database/blob/main/wireframes/page5 smaller.png)
+![front page](https://github.com/Kriz-hub/Football_League_Database/blob/main/wireframes/page6 smaller.png)
 
 
 
