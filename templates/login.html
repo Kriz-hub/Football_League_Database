@@ -6,6 +6,8 @@
     <title>Login</title>
 </head>
 <body>
-<h1>testing123</h1>
+    {% for name in names %}
+        {{ name.first }} - {{ name.last }} <br>
+    {% endfor %}
 </body>
 </html>

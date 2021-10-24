@@ -20,8 +20,8 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_tasks")
 def get_tasks():
-    lea = mongo.db.league.find()
-    return render_template("login.html", lea=lea)
+    names = mongo.db.celebrities.find()
+    return render_template("login.html", names=names)
 
 
 if __name__ == "__main__":
