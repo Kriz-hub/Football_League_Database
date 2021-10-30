@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="center-align">Manage Matches</h3>
+
+    <div class="row">
+        <div class="input-field col s12">
+            <select id="league_name2" name="league_name" class="validate" required>
+                <option value="" disabled>Choose League</option>
+                {% for league in leagues %}
+                <option value="{{ league.league_name }}" selected>{{ league.league_name }}</option>
+                {% endfor %}
+                <option value="123" selected>456</option>
+            </select>
+        </div>
+     </div>
+
+    <!-- due date picker -->
+    <div class="row">
+        <div class="input-field col s12">
+            <input id="" name="due_date" type="text"
+               value="" class="datepicker validate" required>
+            <label for="">Match Date</label>
+        </div>
+    </div>         
+
+{% endblock %}

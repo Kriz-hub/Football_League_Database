@@ -97,6 +97,12 @@ def delete_league(league_id):
     flash("League Successfully Deleted")
     return redirect(url_for("get_leagues"))
 
+
+@app.route("/get_matches")
+def get_matches():
+    leagues = list(mongo.db.leagues.find().sort("league_name", 1))
+    return render_template("matches.html", leagues=leagues)
+
     
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
