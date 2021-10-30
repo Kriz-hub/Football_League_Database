@@ -56,8 +56,48 @@ def delete_club(club_id):
     mongo.db.clubs.remove({"_id": ObjectId(club_id)})
     flash("Club Successfully Deleted")
     return redirect(url_for("get_clubs"))
-    
 
+
+@app.route("/add_leagues", methods=["GET", "POST"])
+def add_league():
+    if request.method == "POST":
+        league = {
+            "league_name": request.form.get("league_name")
+        }
+        mongo.db.leagues.insert_one(league)
+        flash("New League Added")
+        return redirect(url_for("get_leagues"))
+
+    return render_template("leagues_add.html")
+
+
+@app.route("/get_leagues")
+def get_leagues():
+    leagues = list(mongo.db.leagues.find().sort("league_name", 1))
+    return render_template("leagues.html", leagues=leagues)
+
+    
+@app.route("/edit_league/<league_id>", methods=["GET", "POST"])
+def edit_league(league_id):
+    if request.method == "POST":
+        submit = {
+            "league_name": request.form.get("league_name")
+        }
+        mongo.db.leagues.update({"_id": ObjectId(league_id)}, submit)
+        flash("League Successfully Updated")
+        return redirect(url_for("get_leagues"))
+
+    league = mongo.db.leagues.find_one({"_id": ObjectId(league_id)})
+    return render_template("leagues_edit.html", league=league)
+
+
+@app.route("/delete_league/<league_id>")
+def delete_league(league_id):
+    mongo.db.leagues.remove({"_id": ObjectId(league_id)})
+    flash("League Successfully Deleted")
+    return redirect(url_for("get_leagues"))
+
+    
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
