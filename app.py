@@ -101,7 +101,8 @@ def delete_league(league_id):
 @app.route("/get_matches")
 def get_matches():
     leagues = list(mongo.db.leagues.find().sort("league_name", 1))
-    return render_template("matches.html", leagues=leagues)
+    clubs = list(mongo.db.clubs.find().sort("club_name", 1))
+    return render_template("matches.html", leagues=leagues, clubs=clubs)
 
     
 if __name__ == "__main__":
