@@ -50,7 +50,7 @@
           <div class="row">
             <div class="input-field col s12">
               <div class="input-field col s6">
-                <input placeholder="Home Score" id="club1_score" type="text" class="validate">
+                <input placeholder="Home Score" id="club1_score" name="club1_score" minlength="1" maxlength="2" type="text" class="validate">
                 <label for="club1_score">Home Score</label>
               </div>
             </div>
@@ -59,7 +59,7 @@
           <div class="row">
             <div class="input-field col s12">
               <div class="input-field col s6">
-                <input placeholder="Out Score" id="club2_score" type="text" class="validate">
+                <input placeholder="Out Score" id="club2_score" name="club2_score" minlength="1" maxlength="2" type="text" class="validate">
                 <label for="club2_score">Out Score</label>
               </div>
             </div>
@@ -75,3 +75,5 @@
           </div>
         </form>
     </div>
+
+    {% endblock %}

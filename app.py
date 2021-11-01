@@ -109,12 +109,12 @@ def get_matches():
 def add_matches():
     if request.method == "POST":
         match = {
-            "league_name": request.form.get("leage_name"),
+            "league_name": request.form.get("league_name"),
             "match-date": request.form.get("match_date"),
             "club1_name": request.form.get("club1_name"),
             "club2_name": request.form.get("club2_name"),
             "club1_score": request.form.get("club1_score"),
-            "club2_score": request.form.get("club2_score"),
+            "club2_score": request.form.get("club2_score")
         }
         mongo.db.matches.insert_one(match)
         flash("Match Successfully Added")
