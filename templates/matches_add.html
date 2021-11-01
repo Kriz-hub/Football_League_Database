@@ -1,70 +1,77 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="center-align">Add Matches</h3>
+    <h3 class="center-align">Football Matches</h3>
+    
+    <div class="row card-panel grey lighten-5">
+        <form class="col s12" method="POST" action="{{ url_for('add_matches') }}">
+          <div class="row">
+            <div class="input-field col s12">
+               <select id="league_name" name="league_name" class="validate" required>
+                   <option value="" disabled>Choose League</option>
+                     {% for league in leagues %}
+                     <option value="{{ league.league_name }}" selected>{{ league.league_name }}</option>
+                     {% endfor %}
+               </select>
+            </div>
+          </div>
 
-    <div class="row card-panel">
-        <form class="col s12" method="POST" action="{{ url_for('match_add.html') }}">
-            <!-- league selection -->
-			<div class="row">
-				<div class="input-field col s12">
-					<select id="league_name" name="league_name" class="validate" required>
-                        <option value="" disabled selected>Choose League</option>
-                        {% for league in leagues %}
-                            <option value="{{ league.leagues_name }}">{{ league.league_name }}</option>
-                        {% endfor %}
-                    </select>
-					<label for="league_name">League Category</label>
-				</div>
-			</div>
-            <!-- date picker -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="match_date" name="match_date" type="text" class="datepicker validate" required>
-                    <label for="match_date">Match Date</label>
-                </div>
+          <!-- match date picker -->
+          <div class="row">
+            <div class="input-field col s12">
+               <input id="match_date" name="match_date" type="text"
+                  value="" class="datepicker validate" required>
+               <label for="">Match Date</label>
             </div>
-            <!-- club1 selection -->
-			<div class="row">
-				<div class="input-field col s12">
-                	<select id="club1" name="club1" class="validate" required>
-                        <option value="" disabled selected>Choose Club1</option>
-                        {% for club in clubs %}
-                            <option value="{{ club.club_name }}">{{ club.club_name }}</option>
-                        {% endfor %}
-                    </select>
-					<label for="club1">Club1 Category</label>
-				</div>
-			</div>
-            <!-- club2 selection -->
-			<div class="row">
-				<div class="input-field col s12">
-					<select id="club2" name="club2" class="validate" required>
-                        <option value="" disabled selected>Choose Club2</option>
-                        {% for club in clubs %}
-                            <option value="{{ club.club_name }}">{{ club.club_name }}</option>
-                        {% endfor %}
-                    </select>
-					<label for="club2">Club2 Category</label>
-				</div>
-			</div>
-            <!-- task name -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="task_name" name="task_name" minlength="5" maxlength="50"
-                        type="text" class="validate" required>
-                    <label for="task_name">Task Name</label>
-                </div>
+          </div>   
+    
+          <div class="row">
+            <div class="input-field col s12">
+              <select id="club1_name" name="club1_name" class="validate" required>
+                <option value="" disabled>Choose Club1</option>
+                {% for club in clubs %}
+                <option value="{{ club.club_name }}" selected>{{ club.club_name }}</option>
+                {% endfor %}
+              </select>
             </div>
-            <!-- submit button -->
-            <div class="row">
-                <div class="col s12 center-align">
-                    <button type="submit" class="btn-large">
-                        Add Match 
-                    </button>
-                </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12">
+              <select id="club2_name" name="club2_name" class="validate" required>
+                <option value="" disabled>Choose Club2</option>
+                {% for club in clubs %}
+                <option value="{{ club.club_name }}" selected>{{ club.club_name }}</option>
+                {% endfor %}
+              </select>
             </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12">
+              <div class="input-field col s6">
+                <input placeholder="Home Score" id="club1_score" type="text" class="validate">
+                <label for="club1_score">Home Score</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12">
+              <div class="input-field col s6">
+                <input placeholder="Out Score" id="club2_score" type="text" class="validate">
+                <label for="club2_score">Out Score</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- submit button -->
+          <div class="row">
+             <div class="col s12 center-align">
+                <button type="submit" class="btn-large">
+                    Add Match <i class="right"></i>
+                 </button>
+             </div>
+          </div>
         </form>
     </div>
-
-{% endblock %

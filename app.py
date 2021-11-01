@@ -104,7 +104,27 @@ def get_matches():
     clubs = list(mongo.db.clubs.find().sort("club_name", 1))
     return render_template("matches.html", leagues=leagues, clubs=clubs)
 
-    
+
+@app.route("/add_matches", methods=["GET", "POST"])
+def add_matches():
+    if request.method == "POST":
+        match = {
+            "league_name": request.form.get("leage_name"),
+            "match-date": request.form.get("match_date"),
+            "club1_name": request.form.get("club1_name"),
+            "club2_name": request.form.get("club2_name"),
+            "club1_score": request.form.get("club1_score"),
+            "club2_score": request.form.get("club2_score"),
+        }
+        mongo.db.matches.insert_one(match)
+        flash("Match Successfully Added")
+        return redirect(url_for("get_matches"))
+
+    leagues = list(mongo.db.leagues.find().sort("league_name", 1))
+    clubs = list(mongo.db.clubs.find().sort("club_name", 1))
+    return render_template("matches_add.html", leagues=leagues, clubs=clubs)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
