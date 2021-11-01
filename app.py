@@ -137,12 +137,14 @@ def edit_match(match_id):
             "club1_score": request.form.get("club1_score"),
             "club2_score": request.form.get("club2_score")
         }
-        mongo.db.matchs.update({"_id": ObjectId(match_id)}, submit)
-        flash("match Successfully Updated")
-        return redirect(url_for("get_matchs"))
+        mongo.db.matches.update({"_id": ObjectId(match_id)}, submit)
+        flash("Match Successfully Updated")
+        return redirect(url_for("get_matches"))
 
+    leagues = list(mongo.db.leagues.find().sort("league_name", 1))
+    clubs = list(mongo.db.clubs.find().sort("club_name", 1))
     match = mongo.db.matches.find_one({"_id": ObjectId(match_id)})
-    return render_template("matches_edit.html", match=match)  
+    return render_template("matches_edit.html", match=match, leagues=leagues, clubs=clubs)  
 
 
 @app.route("/delete_match/<match_id>")
