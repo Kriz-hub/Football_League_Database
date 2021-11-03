@@ -60,9 +60,11 @@ def delete_club(club_id):
 
 @app.route("/add_leagues", methods=["GET", "POST"])
 def add_league():
+    nr = mongo.db.leagues.count()
     if request.method == "POST":
         league = {
             "league_name": request.form.get("league_name")
+            "League_nr": request.form.get("nr+1")
         }
         mongo.db.leagues.insert_one(league)
         flash("New League Added")
