@@ -60,11 +60,9 @@ def delete_club(club_id):
 
 @app.route("/add_leagues", methods=["GET", "POST"])
 def add_league():
-    nr = mongo.db.leagues.count()
     if request.method == "POST":
         league = {
             "league_name": request.form.get("league_name")
-            "League_nr": request.form.get("nr+1")
         }
         mongo.db.leagues.insert_one(league)
         flash("New League Added")
@@ -111,8 +109,10 @@ def get_matches():
 @app.route("/add_matches", methods=["GET", "POST"])
 def add_matches():
     if request.method == "POST":
+        league = mongo.db.leagues.find_one({"league_name":  request.form.get("league_name")})
         match = {
-            "league_name": request.form.get("league_name"),
+           "league_nr": league ["_id"],
+           "league_name": request.form.get("league_name"),
             "match_date": request.form.get("match_date"),
             "club1_name": request.form.get("club1_name"),
             "club2_name": request.form.get("club2_name"),
@@ -123,8 +123,9 @@ def add_matches():
         flash("Match Successfully Added")
         return redirect(url_for("get_matches"))
 
-    leagues = list(mongo.db.leagues.find().sort("league_name", 1))
+    
     clubs = list(mongo.db.clubs.find().sort("club_name", 1))
+    leagues = list(mongo.db.leagues.find().sort("league_name", 1))
     return render_template("matches_add.html", leagues=leagues, clubs=clubs)
 
 
