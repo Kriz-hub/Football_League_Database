@@ -83,7 +83,12 @@ def edit_league(league_id):
         submit = {
             "league_name": request.form.get("league_name")
         }
+
         mongo.db.leagues.update({"_id": ObjectId(league_id)}, submit)
+        matches = mongo.db.matches.find({"league_id": ObjectId(league_id)})
+        print (matches)
+        for match in matches: 
+            mongo.db.matches.update({"match_id": ObjectId(match_id)}, submit)
         flash("League Successfully Updated")
         return redirect(url_for("get_leagues"))
 
@@ -109,10 +114,14 @@ def get_matches():
 @app.route("/add_matches", methods=["GET", "POST"])
 def add_matches():
     if request.method == "POST":
+        club1 = mongo.db.clubs.find_one({"club_name":  request.form.get("club1_name")})
+        club2 = mongo.db.clubs.find_one({"club_name":  request.form.get("club2_name")})
         league = mongo.db.leagues.find_one({"league_name":  request.form.get("league_name")})
         match = {
-           "league_nr": league ["_id"],
-           "league_name": request.form.get("league_name"),
+            "league_nr": league ["_id"],
+            "club1_nr": club1 ["_id"],
+            "club2_nr": club2 ["_id"],
+            "league_name": request.form.get("league_name"),
             "match_date": request.form.get("match_date"),
             "club1_name": request.form.get("club1_name"),
             "club2_name": request.form.get("club2_name"),
