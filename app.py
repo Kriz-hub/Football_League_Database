@@ -84,13 +84,22 @@ def edit_league(league_id):
             "league_name": request.form.get("league_name")
         }
 
-        matches = list(mongo.db.matches.find().sort("league_nr", 1))
         mongo.db.leagues.update({"_id": ObjectId(league_id)}, submit)
-        mongo.db.matches.updateMany ({
-            "league_nr": {
-        $in: [ObjectId(league_id)]    }}, {
-             $set: {"league_name": request.form.get("league_name")}})
-    
+        matches = list(mongo.db.matches.find().sort("league_name", 1))
+        for match in matches:
+            if match["league_nr"] == ObjectId(league_id):
+                submit = {
+                      "league_nr": match ["league_nr"],
+                      "club1_nr": match ["club1_nr"],
+                      "club2_nr": match ["club2_nr"],
+                      "league_name": request.form.get("league_name"),
+                      "match_date": match ["match_date"],
+                      "club1_name": match ["club1_name"],
+                      "club2_name": match ["club2_name"],
+                      "club1_score": match ["club1_score"],
+                      "club2_score": match ["club2_score"]       
+                }
+                mongo.db.matches.update({"_id": match["_id"]}, submit)
         flash("League Successfully Updated")
         return redirect(url_for("get_leagues"))
 
@@ -110,6 +119,8 @@ def get_matches():
     leagues = list(mongo.db.leagues.find().sort("league_name", 1))
     clubs = list(mongo.db.clubs.find().sort("club_name", 1))
     matches = list(mongo.db.matches.find().sort("league_name", 1))
+    for match in matches:
+      print (match)
     return render_template("matches.html", matches=matches, leagues=leagues, clubs=clubs)
 
 
