@@ -44,6 +44,35 @@ def edit_club(club_id):
             "club_name": request.form.get("club_name")
         }
         mongo.db.clubs.update({"_id": ObjectId(club_id)}, submit)
+        matches = list(mongo.db.matches.find().sort("club1_name", 1))
+        for match in matches:
+            if match["club1_nr"] == ObjectId(club_id):
+                submit = {
+                      "league_nr": match ["league_nr"],
+                      "club1_nr": match ["club1_nr"],
+                      "club2_nr": match ["club2_nr"],
+                      "league_name": match ["league_name"],
+                      "match_date": match ["match_date"],
+                      "club1_name": request.form.get("club_name"),
+                      "club2_name": match ["club2_name"],
+                      "club1_score": match ["club1_score"],
+                      "club2_score": match ["club2_score"]       
+                }
+                mongo.db.matches.update({"_id": match["_id"]}, submit)
+        for match in matches:
+            if match["club2_nr"] == ObjectId(club_id):
+                submit = {
+                      "league_nr": match ["league_nr"],
+                      "club1_nr": match ["club1_nr"],
+                      "club2_nr": match ["club2_nr"],
+                      "league_name": match ["league_name"],
+                      "match_date": match ["match_date"],
+                      "club1_name": match ["club1_name"],
+                      "club2_name": request.form.get("club_name"),
+                      "club1_score": match ["club1_score"],
+                      "club2_score": match ["club2_score"]       
+                }
+                mongo.db.matches.update({"_id": match["_id"]}, submit)
         flash("Club Successfully Updated")
         return redirect(url_for("get_clubs"))
 
