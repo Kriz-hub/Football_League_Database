@@ -255,7 +255,37 @@ def show_ranking():
                  clubs [nr, "total_points"] = clubs [nr, "total_points"] + 1
              if match ["club2_score"] < match ["club1_score"]:
                  clubs [nr, "total_lost"] = clubs [nr, "total_lost"] + 1
-               
+
+    nr = -1
+    nr_sorted = -1
+    ranked_clubs = nil
+    for club in clubs:
+        nr = nr + 1
+        if clubs [nr, "total_played"] > 0:
+            nr_b = 0
+            while_ready = False
+            if nr_sorted > -1:
+              while (nr_b <= nr_sorted) and (while_ready == False):
+                points_a = clubs [nr, "total_points"]
+                points_b = ranked_clubs [nr_b, "total_points"]
+                goal_diff_a = clubs [nr, "club1_score"] - clubs [nr, "club2_score"]
+                goal_diff_b = ranked_clubs [nr_b, "club1_score"] - ranked_clubs [nr_b, "club2_score"]
+                goals_a = clubs [nr, "club1_score"]
+                goals_b = ranked_clubs [nr_b, "club1_score"]
+                if points_a > points_b: 
+                  while_ready = True
+                else:
+                  if (points_a == points_b) and (goal_diff_a > goal_diff_b): 
+                    while_ready = True
+                  else:
+                    if (points_a == points_b) and (goal_diff_a == goal_diff_b) and (points_a>points_b):
+                      while_ready = True
+                if while_ready == false: nr_b = nr_b + 1
+              
+              for nr_c in range(nr_sorted + 1, nr_b + 1, -1):
+                ranked_clubs [nr_c] = ranked_clubs [nr_c-1]
+            nr_sorted = nr_sorted + 1
+            ranked_clubs [nr_b] = clubs [nr]    
     return render_template("rankings_show.html", leagues=leagues, clubs=clubs, matches=matches)
 
 
