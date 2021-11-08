@@ -41,7 +41,7 @@ def add_club():
 def edit_club(club_id):
     if request.method == "POST":
         submit = {
-            "club_name": request.form.get("club_name")
+            "club_name": request.form.get("club_name"),
         }
         mongo.db.clubs.update({"_id": ObjectId(club_id)}, submit)
         matches = list(mongo.db.matches.find().sort("club1_name", 1))
@@ -147,7 +147,7 @@ def delete_league(league_id):
 def get_matches():
     leagues = list(mongo.db.leagues.find().sort("league_name", 1))
     clubs = list(mongo.db.clubs.find().sort("club_name", 1))
-    matches = list(mongo.db.matches.find().sort("league_name", 1))
+    matches = list(mongo.db.matches.find().sort("match_date", 1))
     return render_template("matches.html", matches=matches, leagues=leagues, clubs=clubs)
 
 
@@ -212,6 +212,51 @@ def get_rankings():
     return render_template("rankings.html", leagues=leagues)
 
 
+@app.route("/show_ranking")
+def show_ranking():
+    leagues = list(mongo.db.leagues.find().sort("league_name", 1))
+    clubs = list(mongo.db.clubs.find().sort("club_name", 1))
+    matches = list(mongo.db.matches.find("match_date", 1))
+    nr = -1
+    for club in clubs:
+       nr = nr + 1
+       clubs [nr] = clubs [nr] + {
+           "total_played": 0,
+           "total_won": 0,
+           "total_draw": 0,
+           "total_lost": 0,
+           "total_points": 0,
+           "total_goals_made": 0,
+           "total_goals_against": 0 
+       }
+       for match in matches:
+          if club ["club_name"] == match ["club1_name"]: 
+             clubs [nr, "total_played"] = clubs [nr, "total_played"] + 1
+             clubs [nr, "total_goals_made"] = clubs [nr, "total_goals_made"] + match ["club1_score"]
+             clubs [nr, "total_goals_against"] = clubs [nr, "total_goals_against"] + match ["club2_score"]
+             if match ["club1_score"] > match ["club2_score"]:
+                 clubs [nr, "total_won"] = clubs [nr, "total_won"] + 1
+                 clubs [nr, "total_points"] = clubs [nr, "total_points"] + 3
+             if match ["club1_score"] == match ["club2_score"]:
+                 clubs [nr, "total_draw"] = clubs [nr, "total_draw"] + 1
+                 clubs [nr, "total_points"] = clubs [nr, "total_points"] + 1
+             if match ["club1_score"] < match ["club2_score"]:
+                 clubs [nr, "total_lost"] = clubs [nr, "total_lost"] + 1
+
+          if club ["club_name"] == match ["club2_name"]: 
+             clubs [nr, "total_played"] = clubs [nr, "total_played"] + 1
+             clubs [nr, "total_goals_made"] = clubs [nr, "total_goals_made"] + match ["club2_score"]
+             clubs [nr, "total_goals_against"] = clubs [nr, "total_goals_against"] + match ["club1_score"]
+             if match ["club2_score"] > match ["club1_score"]:
+                 clubs [nr, "total_won"] = clubs [nr, "total_won"] + 1
+                 clubs [nr, "total_points"] = clubs [nr, "total_points"] + 3
+             if match ["club2_score"] == match ["club1_score"]:
+                 clubs [nr, "total_draw"] = clubs [nr, "total_draw"] + 1
+                 clubs [nr, "total_points"] = clubs [nr, "total_points"] + 1
+             if match ["club2_score"] < match ["club1_score"]:
+                 clubs [nr, "total_lost"] = clubs [nr, "total_lost"] + 1
+               
+    return render_template("rankings_show.html", leagues=leagues, clubs=clubs, matches=matches)
 
 
 if __name__ == "__main__":
