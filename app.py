@@ -216,11 +216,13 @@ def get_rankings():
 def show_ranking():
     leagues = list(mongo.db.leagues.find().sort("league_name", 1))
     clubs = list(mongo.db.clubs.find().sort("club_name", 1))
-    matches = list(mongo.db.matches.find("match_date", 1))
+    matches = list(mongo.db.matches.find().sort("match_date", 1))
     nr = -1
     for club in clubs:
        nr = nr + 1
-       clubs [nr] = clubs [nr] + {
+       name = club ["club_name"]
+       club = {
+           "club_name": name,
            "total_played": 0,
            "total_won": 0,
            "total_draw": 0,
@@ -286,6 +288,7 @@ def show_ranking():
                 ranked_clubs [nr_c] = ranked_clubs [nr_c-1]
             nr_sorted = nr_sorted + 1
             ranked_clubs [nr_b] = clubs [nr]    
+    print (ranked_clubs)
     return render_template("rankings_show.html", leagues=leagues, clubs=clubs, matches=matches)
 
 
