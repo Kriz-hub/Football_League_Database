@@ -148,8 +148,6 @@ def get_matches():
     leagues = list(mongo.db.leagues.find().sort("league_name", 1))
     clubs = list(mongo.db.clubs.find().sort("club_name", 1))
     matches = list(mongo.db.matches.find().sort("league_name", 1))
-    for match in matches:
-      print (match)
     return render_template("matches.html", matches=matches, leagues=leagues, clubs=clubs)
 
 
@@ -206,6 +204,14 @@ def delete_match(match_id):
     mongo.db.matches.remove({"_id": ObjectId(match_id)})
     flash("Match Successfully Deleted")
     return redirect(url_for("get_matches"))
+
+
+@app.route("/get_rankings")
+def get_rankings():
+    leagues = list(mongo.db.leagues.find().sort("league_name", 1))
+    return render_template("rankings.html", leagues=leagues)
+
+
 
 
 if __name__ == "__main__":

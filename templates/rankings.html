@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="center-align">Show League Rankings</h3>
+
+    <div class="row">
+        <ul class="collection">
+        {% for league in leagues %}
+          <li class="collection-item">
+            <a href="#" class="btn right-align">Show Ranking</a>
+            <span>{{league.league_name }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+{% endblock %}

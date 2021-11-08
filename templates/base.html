@@ -20,19 +20,21 @@
 				<a href="{{ url_for('get_clubs') }}" class="brand-logo">Football League Database</a>
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger right"></a>
 				<ul class="right hide-on-med-and-down">
-          <li><a href="{{ url_for('get_clubs') }}">Clubs</a></li>
-          <li><a href="{{ url_for('get_leagues') }}">Leagues</a></li>
-          <li><a href="{{ url_for('get_matches') }}">Matches</a></li>
+                  <li><a href="{{ url_for('get_clubs') }}">Clubs</a></li>
+                  <li><a href="{{ url_for('get_leagues') }}">Leagues</a></li>
+                  <li><a href="{{ url_for('get_matches') }}">Matches</a></li>
+                  <li><a href="{{ url_for('get_rankings') }}">Rankings</a></li>
 				</ul>
 			</div>
 		</nav>
 
         <!-- mobile sidenav -->
 		<ul class="sidenav" id="mobile-demo">
-        <li><h4 class="center-align">Football League Database</h4></li>
-        <li><a href="{{ url_for('get_clubs') }}">Clubs</a></li>
-        <li><a href="{{ url_for('get_leagues') }}">Leagues</a></li>
-        <li><a href="#">Matches</a></li>       
+          <li><h4 class="center-align">Football League Database</h4></li>
+          <li><a href="{{ url_for('get_clubs') }}">Clubs</a></li>
+          <li><a href="{{ url_for('get_leagues') }}">Leagues</a></li>
+          <li><a href="{{ url_for('get_matches') }}">Matches</a></li>
+          <li><a href="{{ url_for('get_rankings') }}">Rankings</a></li>
 		</ul>
 	</header>
 
