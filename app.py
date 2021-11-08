@@ -233,47 +233,48 @@ def show_ranking():
        }
        for match in matches:
           if club ["club_name"] == match ["club1_name"]: 
-             clubs [nr, "total_played"] = clubs [nr, "total_played"] + 1
-             clubs [nr, "total_goals_made"] = clubs [nr, "total_goals_made"] + match ["club1_score"]
-             clubs [nr, "total_goals_against"] = clubs [nr, "total_goals_against"] + match ["club2_score"]
+             club ["total_played"] = club ["total_played"] + 1
+             club ["total_goals_made"] = club ["total_goals_made"] + int(match ["club1_score"])
+             club ["total_goals_against"] = club ["total_goals_against"] + int(match ["club2_score"])
              if match ["club1_score"] > match ["club2_score"]:
-                 clubs [nr, "total_won"] = clubs [nr, "total_won"] + 1
-                 clubs [nr, "total_points"] = clubs [nr, "total_points"] + 3
+                 club ["total_won"] = club ["total_won"] + 1
+                 club ["total_points"] = club ["total_points"] + 3
              if match ["club1_score"] == match ["club2_score"]:
-                 clubs [nr, "total_draw"] = clubs [nr, "total_draw"] + 1
-                 clubs [nr, "total_points"] = clubs [nr, "total_points"] + 1
+                 club ["total_draw"] = club ["total_draw"] + 1
+                 club ["total_points"] = club ["total_points"] + 1
              if match ["club1_score"] < match ["club2_score"]:
-                 clubs [nr, "total_lost"] = clubs [nr, "total_lost"] + 1
+                 club ["total_lost"] = club ["total_lost"] + 1
 
           if club ["club_name"] == match ["club2_name"]: 
-             clubs [nr, "total_played"] = clubs [nr, "total_played"] + 1
-             clubs [nr, "total_goals_made"] = clubs [nr, "total_goals_made"] + match ["club2_score"]
-             clubs [nr, "total_goals_against"] = clubs [nr, "total_goals_against"] + match ["club1_score"]
+             club ["total_played"] = club ["total_played"] + 1
+             club ["total_goals_made"] = club ["total_goals_made"] + int(match ["club2_score"])
+             club ["total_goals_against"] = club ["total_goals_against"] + int(match ["club1_score"])
              if match ["club2_score"] > match ["club1_score"]:
-                 clubs [nr, "total_won"] = clubs [nr, "total_won"] + 1
-                 clubs [nr, "total_points"] = clubs [nr, "total_points"] + 3
+                 club ["total_won"] = club ["total_won"] + 1
+                 club ["total_points"] = club ["total_points"] + 3
              if match ["club2_score"] == match ["club1_score"]:
-                 clubs [nr, "total_draw"] = clubs [nr, "total_draw"] + 1
-                 clubs [nr, "total_points"] = clubs [nr, "total_points"] + 1
+                 club ["total_draw"] = club ["total_draw"] + 1
+                 club ["total_points"] = club ["total_points"] + 1
              if match ["club2_score"] < match ["club1_score"]:
-                 clubs [nr, "total_lost"] = clubs [nr, "total_lost"] + 1
-
+                 club ["total_lost"] = club ["total_lost"] + 1
+       clubs [nr]=club
     nr = -1
     nr_sorted = -1
-    ranked_clubs = nil
+    ranked_clubs = clubs
     for club in clubs:
         nr = nr + 1
-        if clubs [nr, "total_played"] > 0:
+        if club ["total_played"] > 0:
             nr_b = 0
             while_ready = False
             if nr_sorted > -1:
               while (nr_b <= nr_sorted) and (while_ready == False):
-                points_a = clubs [nr, "total_points"]
-                points_b = ranked_clubs [nr_b, "total_points"]
-                goal_diff_a = clubs [nr, "club1_score"] - clubs [nr, "club2_score"]
-                goal_diff_b = ranked_clubs [nr_b, "club1_score"] - ranked_clubs [nr_b, "club2_score"]
-                goals_a = clubs [nr, "club1_score"]
-                goals_b = ranked_clubs [nr_b, "club1_score"]
+                points_a = club ["total_points"]
+                ranked_club = ranked_clubs [nr_b]
+                points_b = ranked_club ["total_points"]
+                goal_diff_a = club ["total_goals_made"] - club ["total_goals_against"]
+                goal_diff_b = ranked_club ["total_goals_made"] - ranked_club ["total_goals_against"]
+                goals_a = club ["total_goals_made"]
+                goals_b = ranked_club ["total_goals_made"]
                 if points_a > points_b: 
                   while_ready = True
                 else:
@@ -282,14 +283,13 @@ def show_ranking():
                   else:
                     if (points_a == points_b) and (goal_diff_a == goal_diff_b) and (points_a>points_b):
                       while_ready = True
-                if while_ready == false: nr_b = nr_b + 1
+                if while_ready == False: nr_b = nr_b + 1
               
               for nr_c in range(nr_sorted + 1, nr_b + 1, -1):
                 ranked_clubs [nr_c] = ranked_clubs [nr_c-1]
             nr_sorted = nr_sorted + 1
             ranked_clubs [nr_b] = clubs [nr]    
-    print (ranked_clubs)
-    return render_template("rankings_show.html", leagues=leagues, clubs=clubs, matches=matches)
+    return render_template("rankings_show.html", leagues=leagues, ranked_clubs=ranked_clubs, matches=matches)
 
 
 if __name__ == "__main__":

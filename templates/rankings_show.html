@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="center-align">Show Ranking</h3>
+    
+    <div class="row">
+      <ul class="collection">
+        {% for rank in ranked_clubs %}
+        {% if rank.total_played > 0 %}
+        <li class="collection-item">
+            <span>{{ rank.club_name }}</span>
+            <span>  |  </span>
+            <span>{{ rank.total_played }}</span>
+            <span>  |  </span>
+            <span>{{ rank.match_date }}</span>
+            <span>  |  </span>
+            <span>{{ rank.total_won }}</span>
+            <span>  |  </span>
+            <span>{{ rank.total_draw }}</span>
+            <span>  |  </span>
+            <span>{{ rank.total_lost }}</span>
+            <span>  |  </span>
+            <span>{{ rank.total_points }}</span>
+            <span>  |  </span>
+            <span>{{ rank.total_goals_made}}</span>
+            <span>-</span>
+            <span>{{ rank.total_goals_against }}</span>
+        </li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+
+{% endblock %}
