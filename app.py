@@ -268,7 +268,7 @@ def show_ranking():
             nr_b = 0
             while_ready = False
             if nr_sorted > -1:
-              while (nr_b < nr_sorted) and (while_ready == False):
+              while (nr_b <= nr_sorted) and (while_ready == False):
                 points_a = club ["total_points"]
                 ranked_club = ranked_clubs [nr_b]
                 points_b = ranked_club ["total_points"]
@@ -276,6 +276,7 @@ def show_ranking():
                 goal_diff_b = ranked_club ["total_goals_made"] - ranked_club ["total_goals_against"]
                 goals_a = club ["total_goals_made"]
                 goals_b = ranked_club ["total_goals_made"]
+                print (nr_sorted, " ", nr_b, " ", points_a, " ", points_b)
                 if points_a > points_b: 
                   while_ready = True
                 else:
@@ -286,18 +287,22 @@ def show_ranking():
                       while_ready = True
                 if while_ready == False: nr_b = nr_b + 1
               
-              if nr_b < nr_sorted:
-                for nr_c in range(nr_sorted + 1, nr_b, -1):
-                  ranked_clubs [nr_c] = ranked_clubs [nr_c-1]
+              if while_ready == True:
+                if nr_b <= nr_sorted:
+                  for nr_c in range(nr_sorted + 1, nr_b, -1):
+                    ranked_clubs [nr_c] = ranked_clubs [nr_c-1]
+                else:
+                  nr_b = nr_sorted + 1
               else:
-                nr_b = nr_sorted + 1
+                if nr_b < nr_sorted:
+                  for nr_c in range(nr_sorted + 1, nr_b, -1):
+                    ranked_clubs [nr_c] = ranked_clubs [nr_c-1]
+                else:
+                  nr_b = nr_sorted + 1
             nr_sorted = nr_sorted + 1
             ranked_clubs [nr_b] = clubs [nr]  
     b = club_amount - 1
-    print ("club_amount:", club_amount)
-    print ("nr_sorted:", nr_sorted)
     for a in range(nr_sorted + 1, club_amount): 
-        print ("b: ", b)
         ranked_clubs.pop(b)
         b = b - 1
     return render_template("rankings_show.html", leagues=leagues, ranked_clubs=ranked_clubs, matches=matches)
