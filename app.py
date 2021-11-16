@@ -221,9 +221,10 @@ def get_rankings():
     return render_template("rankings.html", leagues=leagues)
 
 
-@app.route("/show_ranking")
-def show_ranking():
-    leagues = list(mongo.db.leagues.find().sort("league_name", 1))
+@app.route("/show_ranking<league_id>", methods=["GET"])
+def show_ranking(league_id):
+  if request.method == "GET":
+    league = mongo.db.leagues.find_one({"_id": ObjectId(league_id)})
     clubs = list(mongo.db.clubs.find().sort("club_name", 1))
     matches = list(mongo.db.matches.find().sort("match_date", 1))
     nr = -1
@@ -241,7 +242,7 @@ def show_ranking():
            "total_goals_against": 0 
        }
        for match in matches:
-          if club ["club_name"] == match ["club1_name"]: 
+          if (league["_id"] == match ["league_nr"]) and (club ["club_name"] == match ["club1_name"]): 
              club ["total_played"] = club ["total_played"] + 1
              club ["total_goals_made"] = club ["total_goals_made"] + int(match ["club1_score"])
              club ["total_goals_against"] = club ["total_goals_against"] + int(match ["club2_score"])
@@ -254,7 +255,7 @@ def show_ranking():
              if match ["club1_score"] < match ["club2_score"]:
                  club ["total_lost"] = club ["total_lost"] + 1
 
-          if club ["club_name"] == match ["club2_name"]: 
+          if (league["_id"] == match ["league_nr"]) and (club ["club_name"] == match ["club2_name"]): 
              club ["total_played"] = club ["total_played"] + 1
              club ["total_goals_made"] = club ["total_goals_made"] + int(match ["club2_score"])
              club ["total_goals_against"] = club ["total_goals_against"] + int(match ["club1_score"])
@@ -285,7 +286,6 @@ def show_ranking():
                 goal_diff_b = ranked_club ["total_goals_made"] - ranked_club ["total_goals_against"]
                 goals_a = club ["total_goals_made"]
                 goals_b = ranked_club ["total_goals_made"]
-                print (nr_sorted, " ", nr_b, " ", points_a, " ", points_b)
                 if points_a > points_b: 
                   while_ready = True
                 else:
@@ -314,7 +314,7 @@ def show_ranking():
     for a in range(nr_sorted + 1, club_amount): 
         ranked_clubs.pop(b)
         b = b - 1
-    return render_template("rankings_show.html", leagues=leagues, ranked_clubs=ranked_clubs, matches=matches)
+  return render_template("rankings_show.html", ranked_clubs=ranked_clubs, matches=matches)
 
 
 if __name__ == "__main__":

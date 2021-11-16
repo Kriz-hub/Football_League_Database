@@ -7,7 +7,7 @@
         <ul class="collection">
         {% for league in leagues %}
           <li class="collection-item">
-            <a href="{{ url_for('show_ranking') }}" class="btn right-align">Show Ranking</a>
+            <a href="{{ url_for('show_ranking', league_id=league._id) }}" class="btn right-align">Show Ranking</a>
             <span>{{ league.league_name }}</span>
           </li>
         {% endfor %}
