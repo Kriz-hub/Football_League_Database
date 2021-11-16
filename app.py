@@ -146,9 +146,15 @@ def delete_league(league_id):
 @app.route("/get_matches")
 def get_matches():
     leagues = list(mongo.db.leagues.find().sort("league_name", 1))
+    return render_template("matches.html", leagues=leagues)
+
+
+@app.route("/manage_matches/<league_id>", methods=["GET", "POST"])
+def manage_matches(league_id):
+    league = mongo.db.leagues.find_one({"_id": ObjectId(league_id)})
     clubs = list(mongo.db.clubs.find().sort("club_name", 1))
     matches = list(mongo.db.matches.find().sort("match_date", 1))
-    return render_template("matches.html", matches=matches, leagues=leagues, clubs=clubs)
+    return render_template("matches_manage.html", matches=matches, league=league, clubs=clubs)
 
 
 @app.route("/add_matches", methods=["GET", "POST"])
