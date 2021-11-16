@@ -6,16 +6,6 @@
     <div class="row card-panel grey lighten-5">
         <form class="col s12" method="POST" action="{{ url_for('add_matches') }}">
           <div class="row">
-            <div class="input-field col s12">
-               <select id="league_name" name="league_name" class="validate" required>
-                   <option value="" disabled>Choose League</option>
-                     {% for league in leagues %}
-                     <option value="{{ league.league_name }}" selected>{{ league.league_name }}</option>
-                     {% endfor %}
-               </select>
-            </div>
-          </div>
-
           <!-- match date picker -->
           <div class="row">
             <div class="input-field col s12">

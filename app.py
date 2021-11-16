@@ -15,7 +15,7 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
-
+global_league_id = "abc"
 
 @app.route("/")
 @app.route("/get_clubs")
@@ -154,20 +154,23 @@ def manage_matches(league_id):
     league = mongo.db.leagues.find_one({"_id": ObjectId(league_id)})
     clubs = list(mongo.db.clubs.find().sort("club_name", 1))
     matches = list(mongo.db.matches.find().sort("match_date", 1))
+    global global_league_id 
+    global_league_id = league ["_id"]
     return render_template("matches_manage.html", matches=matches, league=league, clubs=clubs)
 
 
 @app.route("/add_matches", methods=["GET", "POST"])
 def add_matches():
+    global global_league_id 
     if request.method == "POST":
         club1 = mongo.db.clubs.find_one({"club_name":  request.form.get("club1_name")})
         club2 = mongo.db.clubs.find_one({"club_name":  request.form.get("club2_name")})
-        league = mongo.db.leagues.find_one({"league_name":  request.form.get("league_name")})
+        league = mongo.db.leagues.find_one({"_id": global_league_id})
         match = {
             "league_nr": league ["_id"],
             "club1_nr": club1 ["_id"],
             "club2_nr": club2 ["_id"],
-            "league_name": request.form.get("league_name"),
+            "league_name": league ["league_name"],
             "match_date": request.form.get("match_date"),
             "club1_name": request.form.get("club1_name"),
             "club2_name": request.form.get("club2_name"),
@@ -177,18 +180,22 @@ def add_matches():
         mongo.db.matches.insert_one(match)
         flash("Match Successfully Added")
         return redirect(url_for("get_matches"))
-
-    
     clubs = list(mongo.db.clubs.find().sort("club_name", 1))
-    leagues = list(mongo.db.leagues.find().sort("league_name", 1))
-    return render_template("matches_add.html", leagues=leagues, clubs=clubs)
+    return render_template("matches_add.html", clubs=clubs)
 
 
 @app.route("/edit_match/<match_id>", methods=["GET", "POST"])
 def edit_match(match_id):
+    clubs = list(mongo.db.clubs.find().sort("club_name", 1))
+    match = mongo.db.matches.find_one({"_id": ObjectId(match_id)})
     if request.method == "POST":
+        club1 = mongo.db.clubs.find_one({"club_name":  request.form.get("club1_name")})
+        club2 = mongo.db.clubs.find_one({"club_name":  request.form.get("club2_name")})
         submit = {
-            "league_name": request.form.get("league_name"),
+            "league_nr": match ["league_nr"],
+            "club1_nr": club1 ["_id"],
+            "club2_nr": club2 ["_id"],
+            "league_name": match ["league_name"],
             "match_date": request.form.get("match_date"),
             "club1_name": request.form.get("club1_name"),
             "club2_name": request.form.get("club2_name"),
@@ -198,11 +205,7 @@ def edit_match(match_id):
         mongo.db.matches.update({"_id": ObjectId(match_id)}, submit)
         flash("Match Successfully Updated")
         return redirect(url_for("get_matches"))
-
-    leagues = list(mongo.db.leagues.find().sort("league_name", 1))
-    clubs = list(mongo.db.clubs.find().sort("club_name", 1))
-    match = mongo.db.matches.find_one({"_id": ObjectId(match_id)})
-    return render_template("matches_edit.html", match=match, leagues=leagues, clubs=clubs)  
+    return render_template("matches_edit.html", match=match, clubs=clubs)  
 
 
 @app.route("/delete_match/<match_id>")

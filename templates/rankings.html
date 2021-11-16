@@ -8,7 +8,7 @@
         {% for league in leagues %}
           <li class="collection-item">
             <a href="{{ url_for('show_ranking') }}" class="btn right-align">Show Ranking</a>
-            <span>{{league.league_name }}</span>
+            <span>{{ league.league_name }}</span>
           </li>
         {% endfor %}
       </ul>
