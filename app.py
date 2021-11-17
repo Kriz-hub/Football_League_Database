@@ -16,6 +16,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 global_league_id = "abc"
+global_last_matchdate = "0"
 
 @app.route("/")
 @app.route("/get_clubs")
@@ -162,6 +163,17 @@ def manage_matches(league_id):
 @app.route("/add_matches", methods=["GET", "POST"])
 def add_matches():
     global global_league_id 
+    global global_last_matchdate
+    if global_last_matchdate == "0":
+        matches = list(mongo.db.matches.find())
+        if len(matches) > 0:
+            match = matches [len(matches)-1]
+            last_matchdate = match ["match_date"]
+        else:
+            last_matchdate = "14 November, 2021"
+    else:
+        last_matchdate = global_last_matchdate
+
     if request.method == "POST":
         club1 = mongo.db.clubs.find_one({"club_name":  request.form.get("club1_name")})
         club2 = mongo.db.clubs.find_one({"club_name":  request.form.get("club2_name")})
@@ -179,9 +191,10 @@ def add_matches():
         }
         mongo.db.matches.insert_one(match)
         flash("Match Successfully Added")
+        global_last_matchdate = request.form.get("match_date")
         return redirect(url_for("get_matches"))
     clubs = list(mongo.db.clubs.find().sort("club_name", 1))
-    return render_template("matches_add.html", clubs=clubs)
+    return render_template("matches_add.html", clubs=clubs, last_matchdate=last_matchdate)
 
 
 @app.route("/edit_match/<match_id>", methods=["GET", "POST"])
