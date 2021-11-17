@@ -16,6 +16,8 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 global_league_id = "abc"
+global_club_id = "abc"
+global_deleted_matches = "0"
 global_last_matchdate = "0"
 
 @app.route("/")
@@ -83,6 +85,9 @@ def edit_club(club_id):
 
 @app.route("/delete_club_question/<club_id>")
 def delete_club_question(club_id):
+    global global_club_id
+    global global_deleted_matches
+    global_club_id = club_id
     matches = list(mongo.db.matches.find())
     deleted_matches = matches
     del_match_nr = -1
@@ -93,8 +98,20 @@ def delete_club_question(club_id):
     
     for a in range(del_match_nr + 1, len(matches)): 
         deleted_matches.pop(len(deleted_matches)-1)
-    return render_template("clubs_delete.html", deleted_matches=deleted_matches)
-    
+    global_deleted_matches = deleted_matches
+    return render_template("clubs_delete.html", deleted_matches=deleted_matches, club_id=club_id)
+
+
+@app.route("/delete_club")
+def delete_club():
+      global global_club_id
+      global global_deleted_matches
+      mongo.db.clubs.remove({"_id": ObjectId(global_club_id)})
+      for match in global_deleted_matches:
+         mongo.db.matches.remove({"_id": match ["_id"]})
+      flash("Club Successfully Deleted")
+      return redirect(url_for("get_clubs"))
+
 
 @app.route("/add_leagues", methods=["GET", "POST"])
 def add_league():
