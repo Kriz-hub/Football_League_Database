@@ -81,12 +81,20 @@ def edit_club(club_id):
     return render_template("clubs_edit.html", club=club)
 
 
-@app.route("/delete_club/<club_id>")
-def delete_club(club_id):
-    mongo.db.clubs.remove({"_id": ObjectId(club_id)})
-    flash("Club Successfully Deleted")
-    return redirect(url_for("get_clubs"))
-
+@app.route("/delete_club_question/<club_id>")
+def delete_club_question(club_id):
+    matches = list(mongo.db.matches.find())
+    deleted_matches = matches
+    del_match_nr = -1
+    for match in matches:
+        if (match ["club1_nr"] == ObjectId(club_id)) or (match ["club2_nr"] == ObjectId(club_id)):
+           del_match_nr = del_match_nr + 1
+           deleted_matches [del_match_nr] = match
+    
+    for a in range(del_match_nr + 1, len(matches)): 
+        deleted_matches.pop(len(deleted_matches)-1)
+    return render_template("clubs_delete.html", deleted_matches=deleted_matches)
+    
 
 @app.route("/add_leagues", methods=["GET", "POST"])
 def add_league():
