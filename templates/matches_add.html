@@ -4,7 +4,7 @@
     <h3 class="center-align">Football Matches</h3>
     
     <div class="row card-panel grey lighten-5">
-        <form class="col s12" method="POST" action="{{ url_for('add_matches') }}">
+        <form class="col s12" method="POST" action="{{ url_for('add_matches', league_id=league_id) }}">
           <div class="row">
           <!-- match date picker -->
           <div class="row">

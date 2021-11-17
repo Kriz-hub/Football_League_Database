@@ -15,8 +15,6 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
-global_league_id = "abc"
-global_club_id = "abc"
 global_deleted_matches = "0"
 global_last_matchdate = "0"
 
@@ -85,9 +83,7 @@ def edit_club(club_id):
 
 @app.route("/delete_club_question/<club_id>")
 def delete_club_question(club_id):
-    global global_club_id
     global global_deleted_matches
-    global_club_id = club_id
     matches = list(mongo.db.matches.find())
     deleted_matches = matches
     del_match_nr = -1
@@ -102,11 +98,10 @@ def delete_club_question(club_id):
     return render_template("clubs_delete.html", deleted_matches=deleted_matches, club_id=club_id)
 
 
-@app.route("/delete_club")
-def delete_club():
-      global global_club_id
+@app.route("/delete_club/<club_id>")
+def delete_club(club_id):
       global global_deleted_matches
-      mongo.db.clubs.remove({"_id": ObjectId(global_club_id)})
+      mongo.db.clubs.remove({"_id": ObjectId(club_id)})
       for match in global_deleted_matches:
          mongo.db.matches.remove({"_id": match ["_id"]})
       flash("Club Successfully Deleted")
@@ -175,19 +170,16 @@ def get_matches():
     return render_template("matches.html", leagues=leagues)
 
 
-@app.route("/manage_matches/<league_id>", methods=["GET", "POST"])
+@app.route("/manage_matches/<league_id>")
 def manage_matches(league_id):
     league = mongo.db.leagues.find_one({"_id": ObjectId(league_id)})
     clubs = list(mongo.db.clubs.find().sort("club_name", 1))
     matches = list(mongo.db.matches.find().sort("match_date", 1))
-    global global_league_id 
-    global_league_id = league ["_id"]
-    return render_template("matches_manage.html", matches=matches, league=league, clubs=clubs)
+    return render_template("matches_manage.html", matches=matches, league=league, league_id=league_id, clubs=clubs)
 
 
-@app.route("/add_matches", methods=["GET", "POST"])
-def add_matches():
-    global global_league_id 
+@app.route("/add_matches/<league_id>", methods=["GET", "POST"])
+def add_matches(league_id):
     global global_last_matchdate
     if global_last_matchdate == "0":
         matches = list(mongo.db.matches.find())
@@ -202,7 +194,7 @@ def add_matches():
     if request.method == "POST":
         club1 = mongo.db.clubs.find_one({"club_name":  request.form.get("club1_name")})
         club2 = mongo.db.clubs.find_one({"club_name":  request.form.get("club2_name")})
-        league = mongo.db.leagues.find_one({"_id": global_league_id})
+        league = mongo.db.leagues.find_one({"_id": league_id})
         match = {
             "league_nr": league ["_id"],
             "club1_nr": club1 ["_id"],
