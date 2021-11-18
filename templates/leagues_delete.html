@@ -1,23 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="center-align">Manage Matches</h3>
+    <h3 class="center-align">Warning: all it's matches will be lost too</h3>
 
     <div class="row">
         <div class="col s12 center-align">
-            <a href="{{ url_for('add_matches', league_id=league_id) }}" class="btn-large">
-                Add match <i class="right"></i>
+            <a href="{{ url_for('delete_league', league_id=league_id) }}" class="btn-large">
+                Delete Club Name <i class="right"></i>
             </a>
         </div>
     </div>
   
     <div class="row">
       <ul class="collection">
-        {% for match in matches %}
-        {% if match.league_nr == league._id %}
+        {% for match in deleted_matches %}
         <li class="collection-item">
-            <a href="{{ url_for('edit_match', match_id=match._id) }}" class="btn right-align">Edit</a>
-            <a href="{{ url_for('delete_match', match_id=match._id) }}" class="btn right-align">Delete</a>
             <span>{{ match.league_name }}</span>
             <span>  |  </span>
             <span>{{ match.match_date }}</span>
@@ -30,7 +27,6 @@
             <span>-</span>
             <span>{{ match.club2_score }}</span>
         </li>
-        {% endif %}
         {% endfor %}
       </ul>
     </div>

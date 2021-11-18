@@ -117,7 +117,6 @@ def add_league():
         mongo.db.leagues.insert_one(league)
         flash("New League Added")
         return redirect(url_for("get_leagues"))
-
     return render_template("leagues_add.html")
 
 
@@ -157,12 +156,31 @@ def edit_league(league_id):
     return render_template("leagues_edit.html", league=league)
 
 
+@app.route("/delete_league_question/<league_id>")
+def delete_league_question(league_id):
+    global global_deleted_matches
+    matches = list(mongo.db.matches.find())
+    deleted_matches = matches
+    del_match_nr = -1
+    for match in matches:
+        if match ["league_nr"] == ObjectId(league_id):
+           del_match_nr = del_match_nr + 1
+           deleted_matches [del_match_nr] = match
+    
+    for a in range(del_match_nr + 1, len(matches)): 
+        deleted_matches.pop(len(deleted_matches)-1)
+    global_deleted_matches = deleted_matches
+    return render_template("leagues_delete.html", deleted_matches=deleted_matches, league_id=league_id)
+
+
 @app.route("/delete_league/<league_id>")
 def delete_league(league_id):
-    mongo.db.leagues.remove({"_id": ObjectId(league_id)})
-    flash("League Successfully Deleted")
-    return redirect(url_for("get_leagues"))
-
+      global global_deleted_matches
+      mongo.db.leagues.remove({"_id": ObjectId(league_id)})
+      for match in global_deleted_matches:
+         mongo.db.matches.remove({"_id": match ["_id"]})
+      flash("League Successfully Deleted")
+      return redirect(url_for("get_leagues"))
 
 @app.route("/get_matches")
 def get_matches():
@@ -194,7 +212,7 @@ def add_matches(league_id):
     if request.method == "POST":
         club1 = mongo.db.clubs.find_one({"club_name":  request.form.get("club1_name")})
         club2 = mongo.db.clubs.find_one({"club_name":  request.form.get("club2_name")})
-        league = mongo.db.leagues.find_one({"_id": league_id})
+        league = mongo.db.leagues.find_one({"_id": ObjectId(league_id)})
         match = {
             "league_nr": league ["_id"],
             "club1_nr": club1 ["_id"],
