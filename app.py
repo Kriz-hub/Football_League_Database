@@ -17,6 +17,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 global_deleted_matches = "0"
 global_last_matchdate = "0"
+global_match_id = "0"
 global_league_id = "0"
 
 @app.route("/")
@@ -212,6 +213,14 @@ def add_matches():
             last_matchdate = "14 November, 2021"
     else:
         last_matchdate = global_last_matchdate
+
+    match = {
+            "match_date": last_matchdate,
+            "club1_name": "x",
+            "club2_name": "x",
+            "club1_score": "x",
+            "club2_score": "x",
+        }
     
     if request.method == "POST":
         club1 = mongo.db.clubs.find_one({"club_name":  request.form.get("club1_name")})
@@ -228,17 +237,18 @@ def add_matches():
             "club1_score": request.form.get("club1_score"),
             "club2_score": request.form.get("club2_score")
         }
+        
         if match ["club1_name"] == match ["club2_name"]:
-            error_name = True
             flash("Error: Club's can't have the same name")
+            return redirect(url_for("add_matches"))
         else:
-          mongo.db.matches.insert_one(match)
           flash("Match Successfully Added")
           global_last_matchdate = request.form.get("match_date")
+          mongo.db.matches.insert_one(match)
           return redirect(url_for("get_matches"))
     
     clubs = list(mongo.db.clubs.find().sort("club_name", 1))
-    return render_template("matches_add.html", clubs=clubs, last_matchdate=last_matchdate)
+    return render_template("matches_add.html", clubs=clubs, match=match)
 
 
 @app.route("/edit_match/<match_id>", methods=["GET", "POST"])
