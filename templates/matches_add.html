@@ -1,16 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-
     <h3 class="center-align">Football Matches</h3>
     
     <div class="row card-panel grey lighten-5">
-        <form class="col s12" method="POST" action="{{ url_for('add_matches', league_id=league_id) }}">
+        <form class="col s12" method="POST" action="{{ url_for('add_matches') }}">
           <div class="row">
+            <div class="input-field col s12">
+               <select id="league_name" name="league_name" class="validate" required>
+                   <option value="" disabled>Choose League</option>
+                     {% for league in leagues %}
+                     <option value="{{ league.league_name }}" selected>{{ league.league_name }}</option>
+                     {% endfor %}
+               </select>
+            </div>
+          </div>
+
           <!-- match date picker -->
           <div class="row">
             <div class="input-field col s12">
                <input id="match_date" name="match_date" type="text"
-               value="{{ last_matchdate }}" class="datepicker validate" required>
+                  value="" class="datepicker validate" required>
                <label for="">Match Date</label>
             </div>
           </div>   
@@ -18,25 +27,23 @@
           <div class="row">
             <div class="input-field col s12">
               <select id="club1_name" name="club1_name" class="validate" required>
-                <option value="" disabled selected>Choose Club1</option>
+                <option value="" disabled>Choose Club1</option>
                 {% for club in clubs %}
-                <option value="{{ club.club_name }}">{{ club.club_name }}</option>
+                <option value="{{ club.club_name }}" selected>{{ club.club_name }}</option>
                 {% endfor %}
               </select>
             </div>
           </div>
-
           <div class="row">
             <div class="input-field col s12">
               <select id="club2_name" name="club2_name" class="validate" required>
-                <option value="" disabled selected>Choose Club2</option>
+                <option value="" disabled>Choose Club2</option>
                 {% for club in clubs %}
-                <option value="{{ club.club_name }}">{{ club.club_name }}</option>
+                <option value="{{ club.club_name }}" selected>{{ club.club_name }}</option>
                 {% endfor %}
               </select>
             </div>
           </div>
-
           <div class="row">
             <div class="input-field col s12">
               <div class="input-field col s6">
@@ -45,7 +52,6 @@
               </div>
             </div>
           </div>
-
           <div class="row">
             <div class="input-field col s12">
               <div class="input-field col s6">
@@ -54,7 +60,6 @@
               </div>
             </div>
           </div>
-
           <!-- submit button -->
           <div class="row">
              <div class="col s12 center-align">
@@ -65,5 +70,4 @@
           </div>
         </form>
     </div>
-
     {% endblock %}
