@@ -208,6 +208,7 @@ def add_matches():
             last_matchdate = "14 November, 2021"
     else:
         last_matchdate = global_last_matchdate
+    
     if request.method == "POST":
         club1 = mongo.db.clubs.find_one({"club_name":  request.form.get("club1_name")})
         club2 = mongo.db.clubs.find_one({"club_name":  request.form.get("club2_name")})
@@ -225,11 +226,12 @@ def add_matches():
         }
         mongo.db.matches.insert_one(match)
         flash("Match Successfully Added")
+        global_last_matchdate = request.form.get("match_date")
         return redirect(url_for("get_matches"))
     
     clubs = list(mongo.db.clubs.find().sort("club_name", 1))
     leagues = list(mongo.db.leagues.find().sort("league_name", 1))
-    global_last_matchdate = request.form.get("match_date")
+
     return render_template("matches_add.html", leagues=leagues, clubs=clubs, last_matchdate=last_matchdate)
 
 
