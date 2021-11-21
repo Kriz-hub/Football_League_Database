@@ -17,6 +17,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 global_deleted_matches = "0"
 global_last_matchdate = "0"
+global_league_id = "0"
 
 @app.route("/")
 @app.route("/get_clubs")
@@ -193,12 +194,16 @@ def manage_matches(league_id):
     league = mongo.db.leagues.find_one({"_id": ObjectId(league_id)})
     clubs = list(mongo.db.clubs.find().sort("club_name", 1))
     matches = list(mongo.db.matches.find().sort("match_date", 1))
-    return render_template("matches_manage.html", matches=matches, league=league, league_id=league_id, clubs=clubs)
+    global global_league_id 
+    global_league_id = ObjectId(league_id)
+    return render_template("matches_manage.html", matches=matches, league=league, clubs=clubs)
 
 
 @app.route("/add_matches", methods=["GET", "POST"])
 def add_matches():
     global global_last_matchdate
+    global global_league_id 
+    print ("gl", global_league_id)
     if global_last_matchdate == "0":
         matches = list(mongo.db.matches.find())
         if len(matches) > 0:
@@ -212,12 +217,13 @@ def add_matches():
     if request.method == "POST":
         club1 = mongo.db.clubs.find_one({"club_name":  request.form.get("club1_name")})
         club2 = mongo.db.clubs.find_one({"club_name":  request.form.get("club2_name")})
-        league = mongo.db.leagues.find_one({"league_name":  request.form.get("league_name")})
+        league = mongo.db.leagues.find_one({"_id": global_league_id })
+        print ("L:", league)
         match = {
             "league_nr": league ["_id"],
             "club1_nr": club1 ["_id"],
             "club2_nr": club2 ["_id"],
-            "league_name": request.form.get("league_name"),
+            "league_name": league ["league_name"],
             "match_date": request.form.get("match_date"),
             "club1_name": request.form.get("club1_name"),
             "club2_name": request.form.get("club2_name"),
@@ -230,9 +236,7 @@ def add_matches():
         return redirect(url_for("get_matches"))
     
     clubs = list(mongo.db.clubs.find().sort("club_name", 1))
-    leagues = list(mongo.db.leagues.find().sort("league_name", 1))
-
-    return render_template("matches_add.html", leagues=leagues, clubs=clubs, last_matchdate=last_matchdate)
+    return render_template("matches_add.html", clubs=clubs, last_matchdate=last_matchdate)
 
 
 @app.route("/edit_match/<match_id>", methods=["GET", "POST"])
