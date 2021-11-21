@@ -17,9 +17,9 @@
           <div class="row">
             <div class="input-field col s12">
               <select id="club1_name" name="club1_name" class="validate" required>
-                <option value="" disabled>Choose Club1</option>
+                <option value="" disabled selected>Choose Club1</option>
                 {% for club in clubs %}
-                <option value="{{ club.club_name }}" selected>{{ club.club_name }}</option>
+                <option value="{{ club.club_name }}">{{ club.club_name }}</option>
                 {% endfor %}
               </select>
             </div>
@@ -27,9 +27,9 @@
           <div class="row">
             <div class="input-field col s12">
               <select id="club2_name" name="club2_name" class="validate" required>
-                <option value="" disabled>Choose Club2</option>
+                <option value="" disabled selected>Choose Club2</option>
                 {% for club in clubs %}
-                <option value="{{ club.club_name }}" selected>{{ club.club_name }}</option>
+                <option value="{{ club.club_name }}">{{ club.club_name }}</option>
                 {% endfor %}
               </select>
             </div>

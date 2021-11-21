@@ -161,7 +161,7 @@ def edit_league(league_id):
 def delete_league_question(league_id):
     global global_deleted_matches
     matches = list(mongo.db.matches.find())
-    deleted_matches = matches
+    deleted_matches = matches.copy()
     del_match_nr = -1
     for match in matches:
         if match ["league_nr"] == ObjectId(league_id):
@@ -203,7 +203,6 @@ def manage_matches(league_id):
 def add_matches():
     global global_last_matchdate
     global global_league_id 
-    print ("gl", global_league_id)
     if global_last_matchdate == "0":
         matches = list(mongo.db.matches.find())
         if len(matches) > 0:
@@ -218,7 +217,6 @@ def add_matches():
         club1 = mongo.db.clubs.find_one({"club_name":  request.form.get("club1_name")})
         club2 = mongo.db.clubs.find_one({"club_name":  request.form.get("club2_name")})
         league = mongo.db.leagues.find_one({"_id": global_league_id })
-        print ("L:", league)
         match = {
             "league_nr": league ["_id"],
             "club1_nr": club1 ["_id"],
@@ -230,10 +228,14 @@ def add_matches():
             "club1_score": request.form.get("club1_score"),
             "club2_score": request.form.get("club2_score")
         }
-        mongo.db.matches.insert_one(match)
-        flash("Match Successfully Added")
-        global_last_matchdate = request.form.get("match_date")
-        return redirect(url_for("get_matches"))
+        if match ["club1_name"] == match ["club2_name"]:
+            error_name = True
+            flash("Error: Club's can't have the same name")
+        else:
+          mongo.db.matches.insert_one(match)
+          flash("Match Successfully Added")
+          global_last_matchdate = request.form.get("match_date")
+          return redirect(url_for("get_matches"))
     
     clubs = list(mongo.db.clubs.find().sort("club_name", 1))
     return render_template("matches_add.html", clubs=clubs, last_matchdate=last_matchdate)
@@ -326,7 +328,7 @@ def show_ranking(league_id):
     club_amount = nr + 1
     nr = -1
     nr_sorted = -1
-    ranked_clubs = clubs
+    ranked_clubs = clubs.copy()
     for club in clubs:
         nr = nr + 1
         if club ["total_played"] > 0:
