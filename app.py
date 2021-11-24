@@ -240,7 +240,7 @@ def add_matches():
         
         if match ["club1_name"] == match ["club2_name"]:
             flash("Error: Club's can't have the same name")
-            return redirect(url_for("add_matches"))
+           
         else:
           flash("Match Successfully Added")
           global_last_matchdate = request.form.get("match_date")
