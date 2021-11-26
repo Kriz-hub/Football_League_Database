@@ -8,23 +8,7 @@
         {% for rank in ranked_clubs %}
         {% if rank.total_played > 0 %}
         <li class="collection-item">
-            <span>{{ rank.club_name }}</span>
-            <span>  |  </span>
-            <span>{{ rank.total_played }}</span>
-            <span>  |  </span>
-            <span>{{ rank.match_date }}</span>
-            <span>  |  </span>
-            <span>{{ rank.total_won }}</span>
-            <span>  |  </span>
-            <span>{{ rank.total_draw }}</span>
-            <span>  |  </span>
-            <span>{{ rank.total_lost }}</span>
-            <span>  |  </span>
-            <span>{{ rank.total_points }}</span>
-            <span>  |  </span>
-            <span>{{ rank.total_goals_made}}</span>
-            <span>-</span>
-            <span>{{ rank.total_goals_against }}</span>
+          <span><pre>{{ rank.club_name }}  |  {{ rank.total_played }}  |  {{ rank.total_won }}  |  {{ rank.total_draw }}  |  {{ rank.total_lost }}  |  {{ rank.total_points }}  |  {{ rank.total_goals_made}} - {{ rank.total_goals_against }}</pre></span>
         </li>
         {% endif %}
         {% endfor %}

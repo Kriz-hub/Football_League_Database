@@ -336,11 +336,13 @@ def show_ranking(league_id):
                  club ["total_lost"] = club ["total_lost"] + 1
        clubs [nr]=club
     club_amount = nr + 1
+    max_len_club = 0
     nr = -1
     nr_sorted = -1
     ranked_clubs = clubs.copy()
     for club in clubs:
-        nr = nr + 1
+        nr += 1
+        if max_len_club < len(club ["club_name"]): max_len_club = len(club ["club_name"])
         if club ["total_played"] > 0:
             nr_b = 0
             while_ready = False
@@ -381,6 +383,12 @@ def show_ranking(league_id):
     for a in range(nr_sorted + 1, club_amount): 
         ranked_clubs.pop(b)
         b = b - 1
+    nr = 0
+    for ranked_club in ranked_clubs:
+        nr += 1
+        ranked_club ["club_name"] = str(nr) + ". " + ranked_club ["club_name"] 
+        while len(ranked_club ["club_name"]) < max_len_club:
+            ranked_club ["club_name"] += " "
   return render_template("rankings_show.html", ranked_clubs=ranked_clubs, matches=matches)
 
 
