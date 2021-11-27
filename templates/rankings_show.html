@@ -5,6 +5,9 @@
     
     <div class="row">
       <ul class="collection">
+        <li class="collection-item">
+          <span><pre>Club  | Played | Won | Draw | Lost | Points | goals</pre></span>
+        </li>
         {% for rank in ranked_clubs %}
         {% if rank.total_played > 0 %}
         <li class="collection-item">

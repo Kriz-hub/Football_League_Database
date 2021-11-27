@@ -386,9 +386,9 @@ def show_ranking(league_id):
     nr = 0
     for ranked_club in ranked_clubs:
         nr += 1
-        ranked_club ["club_name"] = str(nr) + ". " + ranked_club ["club_name"] 
         while len(ranked_club ["club_name"]) < max_len_club:
             ranked_club ["club_name"] += " "
+        ranked_club ["club_name"] = str(nr) + ". " + ranked_club ["club_name"] 
   return render_template("rankings_show.html", ranked_clubs=ranked_clubs, matches=matches)
 
 
