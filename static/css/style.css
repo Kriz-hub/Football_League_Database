@@ -5,6 +5,15 @@ body {
     background: rgb(100, 97, 97);
   }
 
-  main {
+ /* main {
     flex: 1 0 auto;
+  }
+*/
+  .make-center {
+    display: flex; 
+    justify-content: flex-end
+  }
+
+  .margin-zero {
+    margin: 0;
   }

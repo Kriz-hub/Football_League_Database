@@ -389,7 +389,11 @@ def show_ranking(league_id):
         while len(ranked_club ["club_name"]) < max_len_club:
             ranked_club ["club_name"] += " "
         ranked_club ["club_name"] = str(nr) + ". " + ranked_club ["club_name"] 
-  return render_template("rankings_show.html", ranked_clubs=ranked_clubs, matches=matches)
+    header_ranking = "Club"
+    while len(header_ranking) < max_len_club + 5: header_ranking += " "
+    header_ranking += "| Played | Won | Draw | Lost | Points | goals"
+  return render_template("rankings_show.html", 
+                  ranked_clubs=ranked_clubs, header_ranking=header_ranking, matches=matches)
 
 
 if __name__ == "__main__":
