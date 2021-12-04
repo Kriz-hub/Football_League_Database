@@ -389,6 +389,18 @@ def show_ranking(league_id):
         while len(ranked_club ["club_name"]) < max_len_club:
             ranked_club ["club_name"] += " "
         ranked_club ["club_name"] = str(nr) + ". " + ranked_club ["club_name"] 
+        s1 = " " + str(ranked_club ["total_played"]) + " "
+        s2 = " " + str(ranked_club ["total_won"])    + " "
+        s3 = " " + str(ranked_club ["total_draw"])   + " "
+        s4 = " " + str(ranked_club ["total_lost"])   + " "
+        s5 = " " + str(ranked_club ["total_points"]) + " "
+        if ranked_club ["total_played"] < 10: s1 += " "
+        if ranked_club ["total_won"] < 10:    s2 += " "
+        if ranked_club ["total_draw"] < 10:   s3 += " "
+        if ranked_club ["total_lost"] < 10:   s4 += " "
+        if ranked_club ["total_points"] < 10: s5 += " "
+        ranked_club ["club_name"] += "  |  " + s1 + "  | " + s2  + "| " + s3  + " | " 
+        ranked_club ["club_name"] +=  s4  + " |  " + s5 + "  | " 
     header_ranking = "Club"
     while len(header_ranking) < max_len_club + 5: header_ranking += " "
     header_ranking += "| Played | Won | Draw | Lost | Points | goals"
