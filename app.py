@@ -383,29 +383,44 @@ def show_ranking(league_id):
     for a in range(nr_sorted + 1, club_amount): 
         ranked_clubs.pop(b)
         b = b - 1
-    nr = 0
+    nr = -1
+    rc_sm_display = ranked_clubs.copy()
     for ranked_club in ranked_clubs:
         nr += 1
+        rc_sm_display [nr] = {"club_name"          : ranked_club ["club_name"],
+                              "total_played"       : ranked_club ["total_played"],
+                              "total_goals_made"   : ranked_club ["total_goals_made"],
+                              "total_goals_against": ranked_club ["total_goals_against"]}
         while len(ranked_club ["club_name"]) < max_len_club:
             ranked_club ["club_name"] += " "
-        ranked_club ["club_name"] = str(nr) + ". " + ranked_club ["club_name"] 
-        s1 = " " + str(ranked_club ["total_played"]) + " "
-        s2 = " " + str(ranked_club ["total_won"])    + " "
-        s3 = " " + str(ranked_club ["total_draw"])   + " "
-        s4 = " " + str(ranked_club ["total_lost"])   + " "
-        s5 = " " + str(ranked_club ["total_points"]) + " "
+        ranked_club ["club_name"] = str(nr+1) + ". " + ranked_club ["club_name"] 
+        while len(rc_sm_display [nr]["club_name"]) < max_len_club:
+            rc_sm_display [nr]["club_name"] += " "
+        rc_sm_display [nr]["club_name"] = str(nr+1) + ". " + rc_sm_display [nr]["club_name"] 
+        s1 = str(ranked_club ["total_played"]) 
+        s2 = str(ranked_club ["total_won"])   
+        s3 = str(ranked_club ["total_draw"])  
+        s4 = str(ranked_club ["total_lost"])  
+        s5 = str(ranked_club ["total_points"]) 
         if ranked_club ["total_played"] < 10: s1 += " "
         if ranked_club ["total_won"] < 10:    s2 += " "
         if ranked_club ["total_draw"] < 10:   s3 += " "
         if ranked_club ["total_lost"] < 10:   s4 += " "
         if ranked_club ["total_points"] < 10: s5 += " "
-        ranked_club ["club_name"] += "  |  " + s1 + "  | " + s2  + "| " + s3  + " | " 
-        ranked_club ["club_name"] +=  s4  + " |  " + s5 + "  | " 
+        ranked_club ["club_name"] += "  |   " + s1 + "   |  " + s2  + " |  " + s3  + "  |  " 
+        ranked_club ["club_name"] +=  s4  + "  |   " + s5 + "   | " 
+        rc_sm_display [nr]["club_name"] += "|" + s1 + "| " + s2  + "| " + s3  + " | " 
+        rc_sm_display [nr]["club_name"] +=  s4  + " | " + s5 + "|" 
+
     header_ranking = "Club"
     while len(header_ranking) < max_len_club + 5: header_ranking += " "
-    header_ranking += "| Pl | Won | Draw | Lost | P | Goals"
+    header_ranking += "| Played | Won | Draw | Lost | Points | Goals"
+    hr_sm_display = "Club"
+    while len(hr_sm_display) < max_len_club + 3: hr_sm_display += " "
+    hr_sm_display += "|Pl|Won|Draw|Lost|Poi|Goals"
   return render_template("rankings_show.html", 
-                  ranked_clubs=ranked_clubs, header_ranking=header_ranking, matches=matches)
+        matches=matches, ranked_clubs=ranked_clubs, header_ranking=header_ranking, 
+        rc_sm_display=rc_sm_display, hr_sm_display=hr_sm_display)
 
 
 if __name__ == "__main__":

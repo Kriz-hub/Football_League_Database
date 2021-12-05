@@ -4,20 +4,36 @@
     <h3 class="center-align">Show Ranking</h3>
     
     <div class="row">
-      <div class="col s12 center-align">
-      <ul class="collection">
-        <li class="collection-item">
-          <span><pre>{{ header_ranking }}</pre></span>
-        </li>
-        {% for rank in ranked_clubs %}
-        {% if rank.total_played > 0 %}
-        <li class="collection-item">
-          <span><pre>{{ rank.club_name }}{{ rank.total_goals_made}} - {{ rank.total_goals_against }}</pre></span>
-        </li>
-        {% endif %}
-        {% endfor %}
-      </ul>
+      <div id="sm-screen">
+        <ul class="collection">
+          <li class="collection-item">
+            <span><pre>{{ hr_sm_display }}</pre></span>
+          </li>
+          {% for rank in rc_sm_display %}
+          {% if rank.total_played > 0 %}
+          <li class="collection-item">
+            <span><pre>{{ rank.club_name }}{{ rank.total_goals_made}}-{{ rank.total_goals_against }}</pre></span>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+
+
+      <div id="desktop-screen" class="col s12 center-align">
+        <ul class="collection">
+          <li class="collection-item">
+            <span><pre>{{ header_ranking }}</pre></span>
+          </li>
+          {% for rank in ranked_clubs %}
+          {% if rank.total_played > 0 %}
+          <li class="collection-item">
+            <span><pre>{{ rank.club_name }}{{ rank.total_goals_made}} - {{ rank.total_goals_against }}</pre></span>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
     </div>
-  </div>
 </main>
 {% endblock %}
