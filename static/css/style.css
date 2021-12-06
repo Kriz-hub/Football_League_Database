@@ -55,6 +55,15 @@ main {
     display: inline;
   }
 
+  .matches-text {
+    font-size: 14px;
+  }
+
+
+  .ranking-text {
+    font-size: 17px;
+  }
+
   .footer-size {
     min-height: 100vh;
   }
@@ -91,6 +100,14 @@ ul.social-media-links li:hover {
     font-size: 20px;
     margin-left: 0;
   }
+
+  .matches-text {
+    font-size: 11px;
+  }
+
+  .ranking-text {
+    font-size: 14px;
+  }
 }
 
 @media screen and (max-width: 550px) {
@@ -104,6 +121,10 @@ ul.social-media-links li:hover {
 
     #desktop-screen {
       display: none;
+    }
+
+    .ranking-text {
+      font-size: 12px;
     }
 }
 

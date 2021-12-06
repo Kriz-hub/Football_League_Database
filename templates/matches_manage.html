@@ -12,7 +12,8 @@
     </div>
   
     <div class="row">
-      <ul class="collection">
+        <div class="col s12">
+      <ul class="collection matches-text">
         {% for match in matches %}
         {% if match.league_nr == league._id %}
         <li class="collection-item">
@@ -33,6 +34,7 @@
         {% endif %}
         {% endfor %}
       </ul>
+        </div>
     </div>
 </main>
 {% endblock %}

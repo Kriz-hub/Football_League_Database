@@ -24,6 +24,18 @@ global_league_id = "0"
 @app.route("/get_clubs")
 def get_clubs():
     clubs = list(mongo.db.clubs.find().sort("club_name", 1))
+    for club in clubs:
+      txt = ""
+      nr=0
+      while nr < len(club ["club_name"]):
+         one_crt = club ["club_name"][nr]
+         if one_crt == " ": one_crt = "."
+         txt += one_crt
+         nr += 1
+      club ["club_name"] = txt
+    max_len_club = 12 + 2
+    for club in clubs:
+      while len(club ["club_name"]) < max_len_club: club ["club_name"] += " "
     return render_template("clubs.html", clubs=clubs)
 
 
