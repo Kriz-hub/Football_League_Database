@@ -16,17 +16,17 @@ Strategy
 •	When club or league is deleted a warning is shown that all references will be deleted as well. Those references are all shown so the user can see what the consequences are.
 
 
-![front page](https://github.com/Kriz-hub/Football_League_Database/blob/main/wireframes/page%201%20Login%20smaller.png)
+![front page](https://github.com/Kriz-hub/Football_League_Database/blob/main/static/wireframes/page%201%20home%20small.png)
 
 ![Page2](https://github.com/Kriz-hub/Football_League_Database/blob/main/wireframes/page%202%20smaller.png)
 
-![Page3](https://github.com/Kriz-hub/Football_League_Database/blob/main/wireframes/page%203%20smaller.png)
+![Page3](https://github.com/Kriz-hub/Football_League_Database/blob/main/static/wireframes/page%203%20small.png)
 
-![Page4](https://github.com/Kriz-hub/Football_League_Database/blob/main/wireframes/page%204%20smaller.png)
+![Page4](https://github.com/Kriz-hub/Football_League_Database/blob/main/static/wireframes/page%204%20small.png)
 
-![Page5](https://github.com/Kriz-hub/Football_League_Database/blob/main/wireframes/page%205%20smaller.png)
+![Page5](https://github.com/Kriz-hub/Football_League_Database/blob/main/static/wireframes/page%205%20small.png)
 
-![Page6](https://github.com/Kriz-hub/Football_League_Database/blob/main/wireframes/page%206%20smaller.png)
+
 
 Database
 •	The database chosen for this is a non-relational database hosted on MongoDB Atlas.
