@@ -13,9 +13,19 @@ main {
   flex: 1 0 auto;
 }
 
+.text-shadow {
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
 .color-of-text {
   color: var(--color-brokenwhite);
 }
+
+.collapsible-header .col strong {
+  margin: 5px;
+  line-height: 42px;
+}
+
   .make-center {
     display: flex; 
     justify-content: flex-end
