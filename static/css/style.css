@@ -1,19 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,500|Roboto:300,400,500wght@100&display=swap');
+
 :root { 
   --color-brokenwhite: rgb(215, 219, 198); 
 }
 
 body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    background: rgb(37, 0, 0);
+  font-family: 'Roboto', sans-serif;
+  font-size: 25px;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background: rgb(37, 0, 0);
 }
 
 main {
   flex: 1 0 auto;
 }
 
-.text-shadow {
+
+#logo {
+  font-size: 30px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  margin-left: 25px;
+}
+
+.navis {
+  font-size: 20px; 
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
@@ -72,10 +84,16 @@ ul.social-media-links li:hover {
     display: flex; 
     justify-content: center; 
     margin-top: 10px;
-}    
+}   
 
+@media screen and (max-width: 762px) {
+  #logo {
+    font-size: 20px;
+    margin-left: 0;
+  }
+}
 
-  @media screen and (max-width: 550px) {
+@media screen and (max-width: 550px) {
     #sm-screen {
       display: inline;
     }
@@ -87,4 +105,10 @@ ul.social-media-links li:hover {
     #desktop-screen {
       display: none;
     }
+}
+
+@media screen and (max-width: 480px) {
+  #logo {
+    font-size: 12px;
   }
+}
