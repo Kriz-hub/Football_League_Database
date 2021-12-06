@@ -18,7 +18,7 @@ Strategy
 
 ![front page](https://github.com/Kriz-hub/Football_League_Database/blob/main/static/wireframes/page%201%20home%20small.png)
 
-![Page2](https://github.com/Kriz-hub/Football_League_Database/blob/main/wireframes/page%202%20smaller.png)
+![Page2](https://github.com/Kriz-hub/Football_League_Database/blob/main/static/wireframes/page%202%20small.png)
 
 ![Page3](https://github.com/Kriz-hub/Football_League_Database/blob/main/static/wireframes/page%203%20small.png)
 
