@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 <main class="container">
-    <h3 class="center-align">Show League Rankings</h3>
+    <h3 class="center-align color-of-text">Show League Rankings</h3>
 
     <div class="row">
         <ul class="collection">
         {% for league in leagues %}
           <li class="collection-item">
-            <a href="{{ url_for('show_ranking', league_id=league._id) }}" class="btn right-align">Show Ranking</a>
+            <a href="{{ url_for('show_ranking', league_id=league._id) }}" class="btn right-align deep-orange darken-4">Show Ranking</a>
             <span>{{ league.league_name }}</span>
           </li>
         {% endfor %}
