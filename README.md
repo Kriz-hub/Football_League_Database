@@ -4,21 +4,21 @@ This is my Data Centric Development project. It's my 3rd milestone project for C
 Click here for my deployed project hosted on Heroku.
 
 ## User stories
-•	As a user : As a new visitor to the Football League Database, I want the page to be easily navigated.
-•	As a user: As a new visitor I want clear instructions on how to add, view, update matches.
-•	As a user: I want a web app that responds quickly to my interaction.
-•	As a user: I want also good access on smaller devices.
+* As a user : As a new visitor to the Football League Database, I want the page to be easily navigated.
+* As a user: As a new visitor I want clear instructions on how to add, view, update matches.
+* As a user: I want a web app that responds quickly to my interaction.
+* As a user: I want also good access on smaller devices.
 
 ## Strategy
-•	The goal of the website is to provide the visitor the option to create their own database of matches and organize them to get it displayed in a ranking list
-•	The user is allowed to add, delete and edit clubs, leagues and matches.
-•	When club names are changed, the database as a whole will be searched to get the ranking list updated
-•	When club or league is deleted a warning is shown that all references will be deleted as well. Those references are all shown so the user can see what the consequences are.
+* The goal of the website is to provide the visitor the option to create their own database of matches and organize them to get it displayed in a ranking list
+* The user is allowed to add, delete and edit clubs, leagues and matches.
+* When club names are changed, the database as a whole will be searched to get the ranking list updated
+* When club or league is deleted a warning is shown that all references will be deleted as well. Those references are all shown so the user can see what the consequences are.
 
 
 ## Database
-•	The database chosen for this is a non-relational database hosted on MongoDB Atlas.
-•	The web application uses 3 database collections, 'Clubs', Leagues and 'Matches'.
+* The database chosen for this is a non-relational database hosted on MongoDB Atlas.
+* The web application uses 3 database collections, 'Clubs', Leagues and 'Matches'.
 
 ## Skeleton
 I created a wireframe using the program:
@@ -49,10 +49,10 @@ I created a wireframe using the program:
 * Flask-PyMongo
 * PyMongo
 
-##Database
+### Database
 * MongoDB
 
-##Hosting
+### Hosting
 * Github
 * Heroku
 
