@@ -16,6 +16,14 @@ Click here for my deployed project hosted on Heroku.
 •	When club or league is deleted a warning is shown that all references will be deleted as well. Those references are all shown so the user can see what the consequences are.
 
 
+## Database
+•	The database chosen for this is a non-relational database hosted on MongoDB Atlas.
+•	The web application uses 3 database collections, 'Clubs', Leagues and 'Matches'.
+
+## Skeleton
+I created a wireframe using the program:
+
+
 ![front page](https://github.com/Kriz-hub/Football_League_Database/blob/main/static/wireframes/page%201%20home%20small.png) 
 
 ![Page2](https://github.com/Kriz-hub/Football_League_Database/blob/main/static/wireframes/page%202%20small.png) ![Page3](https://github.com/Kriz-hub/Football_League_Database/blob/main/static/wireframes/page%203%20small.png) 
@@ -24,36 +32,29 @@ Click here for my deployed project hosted on Heroku.
 
 
 
-## Database
-•	The database chosen for this is a non-relational database hosted on MongoDB Atlas.
-•	The web application uses 3 database collections, 'Clubs', Leagues and 'Matches'.
-
-## Skeleton
-I created a wireframe using the program
-
 ## Technologies
 
-Languages
-•	HTML5
-•	CSS3
-•	Javascript
-•	Python3
+### Languages
+* HTML5
+* CSS3
+* Javascript
+* Python3
 
-Libraries
-•	Materialize
-•	FontAwesome
-•	jQuery
-•	Dnspython
-•	Flask
-•	Flask-PyMongo
-•	PyMongo
+### Libraries
+* Materialize
+* FontAwesome
+* jQuery
+* Dnspython
+* Flask
+* Flask-PyMongo
+* PyMongo
 
-Database
-•	MongoDB
+##Database
+* MongoDB
 
-Hosting
-•	Github
-•	Heroku
+##Hosting
+* Github
+* Heroku
 
 
 
