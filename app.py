@@ -58,7 +58,7 @@ def edit_club(club_id):
         submit = {
             "club_name": request.form.get("club_name"),
         }
-        mongo.db.clubs.update({"_id": ObjectId(club_id)}, submit)
+        mongo.db.clubs.update_one({"_id": ObjectId(club_id)}, { "$set": submit })
         matches = list(mongo.db.matches.find().sort("club1_name", 1))
         for match in matches:
             if match["club1_nr"] == ObjectId(club_id):
@@ -114,12 +114,14 @@ def delete_club_question(club_id):
 
 @app.route("/delete_club/<club_id>")
 def delete_club(club_id):
-      global global_deleted_matches
-      mongo.db.clubs.remove({"_id": ObjectId(club_id)})
-      for match in global_deleted_matches:
-         mongo.db.matches.remove({"_id": match ["_id"]})
-      flash("Club Successfully Deleted")
-      return redirect(url_for("get_clubs"))
+    global global_deleted_matches
+    mongo.db.clubs.delete_one({"_id": ObjectId(club_id)})
+    for match in mongo.db.matches.find({"club1_nr": ObjectId(club_id)}):
+        mongo.db.matches.delete_one({"_id": match["_id"]})
+    for match in mongo.db.matches.find({"club2_nr": ObjectId(club_id)}):
+        mongo.db.matches.delete_one({"_id": match["_id"]})
+    flash("Club Successfully Deleted")
+    return redirect(url_for("get_clubs"))
 
 
 @app.route("/add_leagues", methods=["GET", "POST"])
