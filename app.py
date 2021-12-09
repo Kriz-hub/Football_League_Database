@@ -73,7 +73,7 @@ def edit_club(club_id):
                       "club1_score": match ["club1_score"],
                       "club2_score": match ["club2_score"]       
                 }
-                mongo.db.matches.update({"_id": match["_id"]}, submit)
+                mongo.db.matches.update_one({"_id":  match["_id"]}, { "$set": submit })
         for match in matches:
             if match["club2_nr"] == ObjectId(club_id):
                 submit = {
@@ -87,7 +87,7 @@ def edit_club(club_id):
                       "club1_score": match ["club1_score"],
                       "club2_score": match ["club2_score"]       
                 }
-                mongo.db.matches.update({"_id": match["_id"]}, submit)
+                mongo.db.matches.update_one({"_id":  match["_id"]}, { "$set": submit })
         flash("Club Successfully Updated")
         return redirect(url_for("get_clubs"))
 
@@ -405,27 +405,7 @@ def show_ranking(league_id):
                               "total_played"       : ranked_club ["total_played"],
                               "total_goals_made"   : ranked_club ["total_goals_made"],
                               "total_goals_against": ranked_club ["total_goals_against"]}
-        while len(ranked_club ["club_name"]) < max_len_club:
-            ranked_club ["club_name"] += " "
         ranked_club ["club_name"] = str(nr+1) + ". " + ranked_club ["club_name"] 
-        while len(rc_sm_display [nr]["club_name"]) < max_len_club:
-            rc_sm_display [nr]["club_name"] += " "
-        rc_sm_display [nr]["club_name"] = str(nr+1) + ". " + rc_sm_display [nr]["club_name"] 
-        s1 = str(ranked_club ["total_played"]) 
-        s2 = str(ranked_club ["total_won"])   
-        s3 = str(ranked_club ["total_draw"])  
-        s4 = str(ranked_club ["total_lost"])  
-        s5 = str(ranked_club ["total_points"]) 
-        if ranked_club ["total_played"] < 10: s1 += " "
-        if ranked_club ["total_won"] < 10:    s2 += " "
-        if ranked_club ["total_draw"] < 10:   s3 += " "
-        if ranked_club ["total_lost"] < 10:   s4 += " "
-        if ranked_club ["total_points"] < 10: s5 += " "
-        ranked_club ["club_name"] += "  |   " + s1 + "   |  " + s2  + " |  " + s3  + "  |  " 
-        ranked_club ["club_name"] +=  s4  + "  |   " + s5 + "   | " 
-        rc_sm_display [nr]["club_name"] += "|" + s1 + "| " + s2  + "| " + s3  + " | " 
-        rc_sm_display [nr]["club_name"] +=  s4  + " | " + s5 + "|" 
-
     header_ranking = "Club"
     while len(header_ranking) < max_len_club + 5: header_ranking += " "
     header_ranking += "| Played | Won | Draw | Lost | Points | Goals"

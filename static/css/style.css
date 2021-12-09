@@ -75,16 +75,24 @@ main {
 
 #sm-screen {
     display: none;
+    padding-right: 0;
+    margin-right: 0;
 }
 
 #desktop-screen {
     display: inline;
+    padding-right: 0;
+    margin-right: 0;
 }
 
 .matches-text {
     font-size: 14px;
 }
 
+.table-style {
+     width:100%; 
+     color:whitesmoke; 
+}
 
 .ranking-text {
     font-size: 17px;
@@ -146,7 +154,7 @@ ul.social-media-links li:hover {
     }
 
     .ranking-text {
-      font-size: 12px;
+      font-size: 10px;
     }
 }
 
