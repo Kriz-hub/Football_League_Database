@@ -4,14 +4,19 @@
     <h3 class="center-align color-of-text">Show League Rankings</h3>
 
     <div class="row">
-        <ul class="collection">
-        {% for league in leagues %}
-          <li class="collection-item">
-            <a href="{{ url_for('show_ranking', league_id=league._id) }}" class="btn right-align deep-orange darken-4">Show Ranking</a>
-            <span>{{ league.league_name }}</span>
-          </li>
-        {% endfor %}
-      </ul>
+      {% for league in leagues %}
+          <div class="col s12 m3">
+              <div class="card center-align">
+                  <div class="card-content">
+                      <span class="card-title">{{ league.league_name }}</span>
+                  </div>
+                  <div class="card-action">
+                    <a href="{{ url_for('show_ranking', league_id=league._id) }}" class="btn right-align deep-orange darken-4">Show Ranking</a>
+                  </div>
+              </div>
+          </div>
+      {% endfor %}
     </div>
 </main>
 {% endblock %}
+
