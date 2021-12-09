@@ -5,27 +5,27 @@
     
     <div class="row">
       <div class="col s12 ranking-text">
-        <table>
+        <table class="ranking-table">
           <tr>
-            <th>Club</th>
-            <th>Played</th>
-            <th>Won</th>
-            <th>Draw</th>
-            <th>Lost</th>
-            <th>Points</th>     
-            <th>Goals</th>        
+            <th class="ranking-th">Club</th>
+            <th class="ranking-th">Played</th>
+            <th class="ranking-th">Won</th>
+            <th class="ranking-th">Draw</th>
+            <th class="ranking-th">Lost</th>
+            <th class="ranking-th">Points</th>     
+            <th class="ranking-th">Goals</th>        
           </tr>
  
           {% for rank in ranked_clubs %}
           {% if rank.total_played > 0 %}
           <tr>
-            <td>{{ rank.club_name }}</td>
-            <td>{{ rank.total_played }}</td>
-            <td>{{ rank.total_won }}</td>
-            <td>{{ rank.total_draw }}</td>
-            <td>{{ rank.total_lost }}</td>
-            <td>{{ rank.total_points }}</td>
-            <td>{{ rank.total_goals_made }} - {{ rank.total_goals_against }}</td>
+            <td class="ranking-td">{{ rank.club_name }}</td>
+            <td class="ranking-td">{{ rank.total_played }}</td>
+            <td class="ranking-td">{{ rank.total_won }}</td>
+            <td class="ranking-td">{{ rank.total_draw }}</td>
+            <td class="ranking-td">{{ rank.total_lost }}</td>
+            <td class="ranking-td">{{ rank.total_points }}</td>
+            <td class="ranking-td">{{ rank.total_goals_made }} - {{ rank.total_goals_against }}</td>
           </tr>
           {% endif %}
           {% endfor %}
