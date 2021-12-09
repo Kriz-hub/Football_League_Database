@@ -19,7 +19,7 @@
               <tr>
                 <td class="matches-td"><a href="{{ url_for('edit_match', match_id=match._id) }}" 
                     class="matches-button btn right-align deep-orange darken-4">Edit</a></td>
-                <td class="matches-td"><a href="{{ url_for('delete_match', match_id=match._id) }}" 
+                <td class="matches-td"><a href="{{ url_for('delete_match_question', match_id=match._id) }}" 
                     class="matches-button btn right-align deep-orange darken-4">Del</a></td>
                 <td class="matches-td">{{ match.league_name }}</td>
                 <td class="matches-td">{{ match.match_date }}</td>
