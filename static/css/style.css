@@ -64,38 +64,30 @@ main {
   line-height: 42px;
 }
 
-.make-center {
-    display: flex; 
-    justify-content: flex-end
-}
-
 .margin-zero {
     margin: 0;
-}
-
-#sm-screen {
-    display: none;
-    padding-right: 0;
-    margin-right: 0;
-}
-
-#desktop-screen {
-    display: inline;
-    padding-right: 0;
-    margin-right: 0;
 }
 
 .matches-text {
     font-size: 14px;
 }
 
-.table-style {
-     width:100%; 
+th, td {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+table {
+     display: flex; 
+     justify-content: center;
      color:white; 
 }
 
 .ranking-text {
-    font-size: 17px;
+    color: white;
+    font-size: 19px;
+    padding-right: 0;
+    margin-right: 0;
 }
 
 .social-media-links {
@@ -140,27 +132,22 @@ ul.social-media-links li:hover {
   }
 }
 
-@media screen and (max-width: 550px) {
-    #sm-screen {
-      display: inline;
-    }
-
+@media screen and (max-width: 630px) {
     th, td {
-      padding-top: 2px;
-      padding-bottom: 2px;
-    }
-
-    #desktop-screen {
-      display: none;
+      padding: 2px;
     }
 
     .ranking-text {
-      font-size: 10px;
+      font-size: 16px;
     }
 }
 
 @media screen and (max-width: 480px) {
   #logo {
     font-size: 12px;
+  }
+
+  .ranking-text {
+    font-size: 14px;
   }
 }

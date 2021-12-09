@@ -4,36 +4,8 @@
     <h3 class="center-align color-of-text">Show Ranking</h3>
     
     <div class="row">
-      <div id="sm-screen" class="col s12 center-align ranking-text">
-        <table class="table-style">
-          <tr>
-            <th>Club</th>
-            <th>Played</th>
-            <th>Won</th>
-            <th>Draw</th>
-            <th>Lost</th>
-            <th>Points</th>     
-            <th>Goals</th>        
-          </tr>
- 
-          {% for rank in ranked_clubs %}
-          {% if rank.total_played > 0 %}
-          <tr class="ranking-padding"></tr>>
-            <td>{{ rank.club_name }}</td>
-            <td class="ranking-weight">{{ rank.total_played }}</td>
-            <td class="ranking-weight">{{ rank.total_won }}</td>
-            <td class="ranking-weight">{{ rank.total_draw }}</td>
-            <td class="ranking-weight">{{ rank.total_lost }}</td>
-            <td class="ranking-weight">{{ rank.total_points }}</td>
-            <td class="ranking-weight">{{ rank.total_goals_made }} - {{ rank.total_goals_against }}</td>
-          </tr>
-          {% endif %}
-          {% endfor %}
-        </table>
-      </div>
-
-      <div id="desktop-screen" class="col s12 center-align ranking-text">
-        <table class="table-style center-align">
+      <div class="col s12 ranking-text">
+        <table>
           <tr>
             <th>Club</th>
             <th>Played</th>

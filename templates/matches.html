@@ -4,10 +4,10 @@
     <h3 class="center-align color-of-text">Show Matches</h3>
 
     <div class="row">
-        <ul class="collection">
+        <ul class="collection center-align">
         {% for league in leagues %}
           <li class="collection-item">
-            <a href="{{ url_for('manage_matches', league_id=league._id) }}" class="btn right-align deep-orange darken-4">Show and Edit Matches</a>
+            <a href="{{ url_for('manage_matches', league_id=league._id) }}" class="btn left-align deep-orange darken-4">Show and Edit Matches</a>
             <span>{{league.league_name }}</span>
           </li>
         {% endfor %}
