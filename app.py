@@ -149,7 +149,7 @@ def edit_league(league_id):
             "league_name": request.form.get("league_name")
         }
 
-        mongo.db.leagues.update({"_id": ObjectId(league_id)}, submit)
+        mongo.db.leagues.update_one({"_id": ObjectId(league_id)}, { "$set": submit })
         matches = list(mongo.db.matches.find().sort("league_name", 1))
         for match in matches:
             if match["league_nr"] == ObjectId(league_id):
@@ -164,7 +164,7 @@ def edit_league(league_id):
                       "club1_score": match ["club1_score"],
                       "club2_score": match ["club2_score"]       
                 }
-                mongo.db.matches.update({"_id": match["_id"]}, submit)
+                mongo.db.matches.update_one({"_id": match["_id"]}, { "$set": submit })
         flash("League Successfully Updated")
         return redirect(url_for("get_leagues"))
 
@@ -192,9 +192,9 @@ def delete_league_question(league_id):
 @app.route("/delete_league/<league_id>")
 def delete_league(league_id):
       global global_deleted_matches
-      mongo.db.leagues.remove({"_id": ObjectId(league_id)})
+      mongo.db.leagues.delete_one({"_id": ObjectId(league_id)})
       for match in global_deleted_matches:
-         mongo.db.matches.remove({"_id": match ["_id"]})
+          mongo.db.matches.delete_one({"_id": match["_id"]})
       flash("League Successfully Deleted")
       return redirect(url_for("get_leagues"))
 
@@ -283,7 +283,7 @@ def edit_match(match_id):
             "club1_score": request.form.get("club1_score"),
             "club2_score": request.form.get("club2_score")
         }
-        mongo.db.matches.update({"_id": ObjectId(match_id)}, submit)
+        mongo.db.matches.update_one({"_id": ObjectId(match_id)}, { "$set": submit })
         flash("Match Successfully Updated")
         return redirect(url_for("get_matches"))
     return render_template("matches_edit.html", match=match, clubs=clubs)  
@@ -291,7 +291,7 @@ def edit_match(match_id):
 
 @app.route("/delete_match/<match_id>")
 def delete_match(match_id):
-    mongo.db.matches.remove({"_id": ObjectId(match_id)})
+    mongo.db.matches.delete_one({"_id": ObjectId(match_id)})
     flash("Match Successfully Deleted")
     return redirect(url_for("get_matches"))
 
