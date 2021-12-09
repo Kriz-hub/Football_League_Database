@@ -18,14 +18,14 @@
  
           {% for rank in ranked_clubs %}
           {% if rank.total_played > 0 %}
-          <tr>
+          <tr class="ranking-padding"></tr>>
             <td>{{ rank.club_name }}</td>
-            <td>{{ rank.total_played }}</td>
-            <td>{{ rank.total_won }}</td>
-            <td>{{ rank.total_draw }}</td>
-            <td>{{ rank.total_lost }}</td>
-            <td>{{ rank.total_points }}</td>
-            <td>{{ rank.total_goals_made }} - {{ rank.total_goals_against }}</td>
+            <td class="ranking-weight">{{ rank.total_played }}</td>
+            <td class="ranking-weight">{{ rank.total_won }}</td>
+            <td class="ranking-weight">{{ rank.total_draw }}</td>
+            <td class="ranking-weight">{{ rank.total_lost }}</td>
+            <td class="ranking-weight">{{ rank.total_points }}</td>
+            <td class="ranking-weight">{{ rank.total_goals_made }} - {{ rank.total_goals_against }}</td>
           </tr>
           {% endif %}
           {% endfor %}
@@ -33,7 +33,7 @@
       </div>
 
       <div id="desktop-screen" class="col s12 center-align ranking-text">
-        <table class="table-style">
+        <table class="table-style center-align">
           <tr>
             <th>Club</th>
             <th>Played</th>
