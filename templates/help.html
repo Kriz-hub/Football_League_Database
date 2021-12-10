@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="container">
+    <h3 class="center-align color-of-text">Help Page</h3>
+    <h4 class="center-align color-of-text">Steps to make put in matches and make a ranking of a football league</h4>
+
+    <div class="row">
+        <ul class="collection">
+          <li class="collection-item">
+              The start is to create clubnames first. You need tot do that at the Home area, by clicking "Add Clubs" 
+          </li>
+          <li class="collection-item">
+              The second step is to create a League, where you can put matches in later, at the League Area. 
+              Of coarse it's possible to create multiple leagues.
+          </li>
+          <li class="collection-item">
+               Then you can fill a league with matches in the Matches Area. Here you must first decide which League 
+               you choose if you made multiple leagues. A date has to be choosen, the system remembers the last date 
+               of input to prevent an input of the same date over and over again manually.There you add a club with an
+               opponent. These are the clubs you added at the start. Then the amount of goals has to put in to make
+               a result.
+          </li>
+          <li class="collection-item">
+               When matches are added in a League, it's possible to get a ranking of that league in the 
+               Ranking Area. After the League is choosen in this area it shows up.
+          </li>
+          <li class="collection-item">
+              It's possible to change club names, league names and match names by clicking on "Edit" in there
+              area.
+          </li>
+          <li class="collection-item">
+              It's also possible to delete club names, league names and match names in there area. But that can effect
+              a whole league and there ranking. When a club or a league is tried to delete, an overview of alle games
+              that also must be deleted automatically is shown tot warn the user for the consequences.
+          </li>
+        </ul>
+    </div>
+</main>
+{% endblock %}

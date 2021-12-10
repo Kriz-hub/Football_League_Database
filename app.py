@@ -423,6 +423,10 @@ def show_ranking(league_id):
         rc_sm_display=rc_sm_display, hr_sm_display=hr_sm_display)
 
 
+@app.route("/get_help")
+def get_help():
+    return render_template("help.html")
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
