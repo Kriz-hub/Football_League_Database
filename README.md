@@ -1,7 +1,7 @@
 # Data Centric Development – Kris Dikkeschei
 
 This is my Data Centric Development project. It's my 3rd milestone project for Code Institute. I came on the idea of Football League Database because I am always curious to look back to sport results in the past. Now it will be possible to get a database for that.
-Click here for my deployed project hosted on Heroku.
+Click [here][DEMO] for my deployed project hosted on Heroku.
 
 ## User stories
 * As a user : As a new visitor to the Football League Database, I want the page to be easily navigated.
@@ -55,6 +55,14 @@ I created a wireframe using the program:
 ### Hosting
 * Github
 * Heroku
+
+**Testing**
+
+**All testing carried out was done manually**
+
+| Test      | Result | 
+| :---        |    :----:   |   
+| Navbar links and homepage     | No errrors. Works.|        |    :----:   |
 
 
 
