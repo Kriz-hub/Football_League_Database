@@ -9,6 +9,7 @@
           <!-- match date picker -->
           <div class="row">
             <div class="input-field col s12">
+              <i class="fas fa-pencil light-blue-text text-darken-4"></i>
                <input id="match_date" name="match_date" type="text"
                   value="{{ match.match_date }}" class="datepicker validate" required>
                <label for="">Match Date</label>
@@ -47,11 +48,11 @@
           <div class="row">
             <div class="input-field col s12">
               <div class="input-field col s6">
+                <i class="fa-regular fa-pencil"></i>
                 {% if match.club1_score == "x" %}
-                <input type="range" min="0" max="20" />
-                <input placeholder="Home Score" id="club1_score" name="club1_score" type="range" min="0" max="20" class="validate">
+                <input placeholder="Home Score" id="club1_score" name="club1_score" type="number" min="0" max="20" class="validate">
                 {% else %}
-                <input placeholder="Home Score" id="club1_score" name="club1_score" type="range" min="0" max="20" 
+                <input placeholder="Home Score" id="club1_score" name="club1_score" type="number" min="0" max="20" 
                        value="{{ match.club1_score }}" class="validate" required>
                 {% endif %}
                 <label for="club1_score">Home Score</label>
@@ -61,10 +62,11 @@
           <div class="row">
             <div class="input-field col s12">
               <div class="input-field col s6">
+                <i class="fa-regular fa-pencil"></i>
                 {% if match.club2_score == "x" %}
-                <input placeholder="Out Score" id="club2_score" name="club2_score" type="range" min="0" max="20" class="validate">
+                <input placeholder="Out Score" id="club2_score" name="club2_score" type="number" min="0" max="20" class="validate">
                 {% else %}
-                <input placeholder="Home Score" id="club1_score" name="club2_score" type="range" min="0" max="20" 
+                <input placeholder="Home Score" id="club1_score" name="club2_score" type="number" min="0" max="20" 
                        value="{{ match.club2_score }}" class="validate" required>
                 {% endif %}
                 <label for="club2_score">Out Score</label>
