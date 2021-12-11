@@ -24,18 +24,6 @@ global_league_id = "0"
 @app.route("/get_clubs")
 def get_clubs():
     clubs = list(mongo.db.clubs.find().sort("club_name", 1))
-    for club in clubs:
-      txt = ""
-      nr=0
-      while nr < len(club ["club_name"]):
-         one_crt = club ["club_name"][nr]
-         if one_crt == " ": one_crt = "."
-         txt += one_crt
-         nr += 1
-      club ["club_name"] = txt
-    max_len_club = 12 + 2
-    for club in clubs:
-      while len(club ["club_name"]) < max_len_club: club ["club_name"] += " "
     return render_template("clubs.html", clubs=clubs)
 
 
@@ -88,6 +76,7 @@ def edit_club(club_id):
                       "club2_score": match ["club2_score"]       
                 }
                 mongo.db.matches.update_one({"_id":  match["_id"]}, { "$set": submit })
+                # when a club is edited, it's name has to be altered in matches
         flash("Club Successfully Updated")
         return redirect(url_for("get_clubs"))
 
@@ -105,7 +94,7 @@ def delete_club_question(club_id):
         if (match ["club1_nr"] == ObjectId(club_id)) or (match ["club2_nr"] == ObjectId(club_id)):
            del_match_nr = del_match_nr + 1
            deleted_matches [del_match_nr] = match
-    
+    # when a club is about to be deleted, then it's matches has to be found as well
     for a in range(del_match_nr + 1, len(matches)): 
         deleted_matches.pop(len(deleted_matches)-1)
     global_deleted_matches = deleted_matches
@@ -116,6 +105,7 @@ def delete_club_question(club_id):
 def delete_club(club_id):
     global global_deleted_matches
     mongo.db.clubs.delete_one({"_id": ObjectId(club_id)})
+    # when a club is deleted, it's matches has to be deleted
     for match in mongo.db.matches.find({"club1_nr": ObjectId(club_id)}):
         mongo.db.matches.delete_one({"_id": match["_id"]})
     for match in mongo.db.matches.find({"club2_nr": ObjectId(club_id)}):
@@ -182,7 +172,7 @@ def delete_league_question(league_id):
         if match ["league_nr"] == ObjectId(league_id):
            del_match_nr = del_match_nr + 1
            deleted_matches [del_match_nr] = match
-    
+    # when a league is about to be deleted, then it's matches has to be found as well
     for a in range(del_match_nr + 1, len(matches)): 
         deleted_matches.pop(len(deleted_matches)-1)
     global_deleted_matches = deleted_matches
@@ -197,7 +187,7 @@ def delete_league(league_id):
           mongo.db.matches.delete_one({"_id": match["_id"]})
       flash("League Successfully Deleted")
       return redirect(url_for("get_leagues"))
-
+# when a league is deleted, it's matches has to be deleted 
 
 @app.route("/get_matches")
 def get_matches():
@@ -403,24 +393,9 @@ def show_ranking(league_id):
     for a in range(nr_sorted + 1, club_amount): 
         ranked_clubs.pop(b)
         b = b - 1
-    nr = -1
-    rc_sm_display = ranked_clubs.copy()
-    for ranked_club in ranked_clubs:
-        nr += 1
-        rc_sm_display [nr] = {"club_name"          : ranked_club ["club_name"],
-                              "total_played"       : ranked_club ["total_played"],
-                              "total_goals_made"   : ranked_club ["total_goals_made"],
-                              "total_goals_against": ranked_club ["total_goals_against"]}
-        ranked_club ["club_name"] = str(nr+1) + ". " + ranked_club ["club_name"] 
-    header_ranking = "Club"
-    while len(header_ranking) < max_len_club + 5: header_ranking += " "
-    header_ranking += "| Played | Won | Draw | Lost | Points | Goals"
-    hr_sm_display = "Club"
-    while len(hr_sm_display) < max_len_club + 3: hr_sm_display += " "
-    hr_sm_display += "|Pl|Won|Draw|Lost|Poi|Goals"
+    
   return render_template("rankings_show.html", 
-        matches=matches, ranked_clubs=ranked_clubs, header_ranking=header_ranking, 
-        rc_sm_display=rc_sm_display, hr_sm_display=hr_sm_display)
+        matches=matches, ranked_clubs=ranked_clubs)
 
 
 @app.route("/get_help")
@@ -430,4 +405,4 @@ def get_help():
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)
