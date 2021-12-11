@@ -63,10 +63,18 @@ I created a wireframe using the program:
 | Test      | Result | 
 | :---        |    :----:   |   
 | Navbar links and homepage     | No errrors. Works.|        |    :----:   |
-
-
-
-
-
+| After pressing "Home" and "Add Clubs", An input field should appear with an input of minimal 3 characters and a maximum of 12, after that a new club name appear on the screen
+| No errrors. Works.|        |    :----:   |
+| When clicked on "Edit" on a created club that same input field should appear again with the old name, this can be altered to a (slightly) different name.    
+| No errrors. Works.|        |    :----:   |
+| When clicked on "Delete" on a created club a warning should come with a list of matches where this deleted club appears in. When pressed "Delete Club Name" all these shown matches should be deleted also.     | No errrors. Works.|        |    :----:   |
+| After pressing "Leagues" and "Add League", An input field should appear with an input of minimal 3 characters and a maximum of 25, after that a new league name appear on the screen
+| No errrors. Works.|        |    :----:   |
+| When clicked on "Edit" on a created league that same input field should appear again with the old name, this can be altered to a (slightly) different name .   
+| No errrors. Works.|        |    :----:   |
+| When clicked on "Delete" on a created league a warning should come with a list of matches in this league. When pressed "Delete League Name" all these shown matches should be deleted also.     | No errrors. Works.|        |    :----:   |
+| When clicked on "Matches' leagues should appear if they are made.      | No errrors. Works.|        |    :----:   |
+| When clicked on a league on the button "Show and Edit Matches" all created matches appear with an "Edit" button and a "DEL" button. On this page should also appear an "Add Matches" button on the top | No errrors. Works.|        |    :----:   |
+| When clicked on "Add Matches" an input form should appear, with Date input, Club1, Club2, Score1, Score2     | No errrors. Works.|        |    :----:   |
 
 
