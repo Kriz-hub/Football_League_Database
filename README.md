@@ -152,7 +152,7 @@ Going forward I would like to implement the following features:
 
 The project is stored in a [GitHub repository](https://github.com/Kriz-hub/Football_League_Database) and hosted on Heroku.
 
-I followed the next steps to deploy Lola's Cookbook on the GitHub pages:
+I followed the next steps to deploy Football_League_Database on the GitHub pages:
 
 * Log into GitHub.
 * Select kriz-hub/Football_Leage_Database in the repository list.
@@ -184,6 +184,6 @@ I followed the next steps to host this app on Heroku:
 ## Acknowledgements
 I got inspiration from The Data Centric Development mini project from the Code Institute Course: building a taskmanager application.
 
-I want to thank mentor Marcel for the tips he gave and the guiding through this project
+I want to thank mentor Marcel for the tips he gave and the guiding through this project.
 
 
