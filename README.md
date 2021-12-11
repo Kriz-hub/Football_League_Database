@@ -1,13 +1,15 @@
 # Data Centric Development – Kris Dikkeschei
 
 This is my Data Centric Development project. It's my 3rd milestone project for Code Institute. I came on the idea of Football League Database because I am always curious to look back to sport results in the past. Now it will be possible to get a database for that.
-Click [here][DEMO] for my deployed project hosted on Heroku.
+Click [HERE](https://football-league-database.herokuapp.com) for my deployed project hosted on Heroku.
+
 
 ## User stories
 * As a user : As a new visitor to the Football League Database, I want the page to be easily navigated.
 * As a user: As a new visitor I want clear instructions on how to add, view, update matches.
 * As a user: I want a web app that responds quickly to my interaction.
 * As a user: I want also good access on smaller devices.
+
 
 ## Strategy
 * The goal of the website is to provide the visitor the option to create their own database of matches and organize them to get it displayed in a ranking list
@@ -20,9 +22,9 @@ Click [here][DEMO] for my deployed project hosted on Heroku.
 * The database chosen for this is a non-relational database hosted on MongoDB Atlas.
 * The web application uses 3 database collections, 'Clubs', Leagues and 'Matches'.
 
-## Skeleton
-I created a wireframe using the program:
 
+## Skeleton
+I created a wireframe using the program [Balsamic Wireframes](https://balsamiq.com):
 
 ![front page](https://github.com/Kriz-hub/Football_League_Database/blob/main/static/wireframes/page%201%20home%20small.png) 
 
@@ -31,16 +33,22 @@ I created a wireframe using the program:
 ![Page4](https://github.com/Kriz-hub/Football_League_Database/blob/main/static/wireframes/page%204%20small.png) ![Page5](https://github.com/Kriz-hub/Football_League_Database/blob/main/static/wireframes/page%205%20small.png)
 
 
+## Surface
+* The colors of my website are black, white (rgb(228, 230, 221)) with red/orange color. Materialize calls that "deep-orange darken-4"
+* For the background picture I was looking for a football related picture with red colors in it. When I found the picture of the Wembley Stadium it nearly felt good, after I saw a method to bring the background back to half opacity it was right for me. The background color itself is dark red (rgb(37, 0, 0));
+* The HTML site is build with Materialize code.
+* I choosed "Roboto" for my text on the website, Arial for the Help Section.
+
 
 ## Technologies
 
-### Languages
+*Languages*
 * HTML5
 * CSS3
 * Javascript
 * Python3
 
-### Libraries
+*Libraries*
 * Materialize
 * FontAwesome
 * jQuery
@@ -49,14 +57,24 @@ I created a wireframe using the program:
 * Flask-PyMongo
 * PyMongo
 
-### Database
+*Database*
 * MongoDB
 
-### Hosting
+*Hosting*
 * Github
 * Heroku
 
-**Testing**
+## Features
+
+The website has been built with a mobile-first approach and is responsive. This is achieved by using the front end framework from Materialize and custom-written css.
+
+## CRUD functions
+
+## Challenges
+
+
+
+## Testing
 
 **All testing carried out was done manually**
 **Testing General:**
@@ -103,3 +121,12 @@ I created a wireframe using the program:
 | Test      | Result | 
 | :---        |    :----:   |
 | When clicked on "Help" a help page should appear with info    | No errors. Works.|        |    :----:   |
+
+## Responsive design
+was tested....
+
+## Features Left to Implement
+
+Going forward I would like to implement the following features:
+
+Login and registration feature: Enabling users to create an account and log in.
