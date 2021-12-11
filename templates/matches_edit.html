@@ -8,6 +8,7 @@
             <!-- match date picker -->
             <div class="row">
                 <div class="input-field col s12">
+                  <i class="fas fa-calendar-alt prefix"></i>
                     <input id="match_date" name="match_date" type="text"
                         value="{{ match.match_date }}" class="datepicker validate" required>
                     <label for="match_date">Match Date</label>
@@ -18,6 +19,7 @@
             <!-- club1 selection -->
             <div class="row">
               <div class="input-field col s12">
+                <i class="fas fa-folder-open prefix"></i>
                 <select id="club1_name" name="club1_name" class="validate" required>
                 <option value="" disabled>Choose Club1</option>
                   {% for club in clubs %}
@@ -36,6 +38,7 @@
             <!-- club2 selection -->
             <div class="row">
               <div class="input-field col s12">
+                <i class="fas fa-folder-open prefix"></i>
                 <select id="club2_name" name="club2_name" class="validate" required>
                   <option value="" disabled>Choose Club2</option>
                   {% for club in clubs %}
@@ -53,6 +56,7 @@
             <div class="row">
               <div class="input-field col s12">
                 <div class="input-field col s6">
+                  <i class="fas fa-pencil-alt prefix"></i>
                   <input placeholder="Home Score" id="club1_score" name="club1_score" type="number" min="0" max="20" 
                          value="{{ match.club1_score }}" class="validate" required>
                   <label for="club1_score">Home Score</label>
@@ -63,7 +67,8 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                  <div class="input-field col s6">                    
+                  <div class="input-field col s6">  
+                    <i class="fas fa-pencil-alt prefix"></i>                  
                     <input placeholder="Home Score" id="club1_score" name="club2_score" type="number" min="0" max="20" 
                            value="{{ match.club2_score }}" class="validate" required>
                     <label for="club2_score">Out Score</label>
