@@ -85,7 +85,7 @@ The website has been built with a mobile-first approach and is responsive. This 
 
 
 ## Challenge
-At a certain moment I discovered that I couldn't edit or delete anything from MongoDB anymore. I was consider to do a complete new signing in to Mongo. When I talked about that with mentor Marcel he looked a little bit to the code, there he discovered that the problem was in these codes: "mongo.db.update", "mongo.db.remove", the ones who are used in the miniproject. When it was replaced by "mongo.db.matches.update_one", "mongo.db.clubs.delete_one", everything worked again.
+At a certain moment I discovered that I couldn't edit or delete anything from MongoDB anymore. I was considering to do a complete new signing in to Mongo. When I talked about that with mentor Marcel he looked a little bit to the code, there he discovered that the problem was in these codes: "mongo.db.update", "mongo.db.remove", the ones who are used in the miniproject. When it was replaced by "mongo.db.matches.update_one", "mongo.db.clubs.delete_one", everything worked again.
 
 
 ## Testing
