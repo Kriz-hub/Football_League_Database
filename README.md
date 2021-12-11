@@ -82,7 +82,7 @@ I created a wireframe using the program:
 **After pressing "Matches" on the navigation bar:**
 | Test      | Result | 
 | :---        |    :----:   |
-| When clicked on "Matches' leagues should appear if they are made.      | No errrors. Works.|        |    :----:   |
+| When clicked on "Matches' rectangles with league names should appear if they are added. When not added or when not clubs are added matches can't be made.    | No errrors. Works.|        |    :----:   |
 | When clicked on a league on the button "Show and Edit Matches" all created matches appear with an "Edit" button and a "DEL" button. On this page should also appear an "Add Matches" button on the top | No errrors. Works.|        |    :----:   |
 | When clicked on "Add Matches" an input form should appear, with Date input, Club1, Club2, Score1, Score2, this form should be validated, when some part aren't filled in it can't be submitted. | No errrors. Works.|        |    :----:   |
 | "Club1" and "Club2" are dropdown menus where clubs can be choosen which are filled in at the "Home" area.        | No errrors. Works.|        |    :----:   |
@@ -94,7 +94,7 @@ I created a wireframe using the program:
 **After pressing "Rankings" on the navigation bar:**
 | Test      | Result | 
 | :---        |    :----:   |
-| When clicked on "Rankings' leagues should appear if they are made.      | No errrors. Works.|        |    :----:   |
+ When clicked on "Rankings' rectangles with league names should appear if they are added. When not added or when not matches are added rankings can't be made.      | No errrors. Works.|        |    :----:   |
 | When clicked on a league on the button "Show ranking" an internal count should be made when matches are filled in. According to FIFA football rules clubs get 3 points when they win and get 1 point when the loose. When clubs have the same point amount the goal difference determines the result of the ranking. This ranking should be displayed. |  No errrors. Works.|        |    :----:   |
 
 **After pressing "Help" on the navigation bar:**
