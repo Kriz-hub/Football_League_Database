@@ -53,9 +53,8 @@
             <div class="row">
               <div class="input-field col s12">
                 <div class="input-field col s6">
-                 
-                  <input placeholder="Home Score" id="club1_score" name="club1_score" minlength="1" 
-                  maxlength="2" value="{{ match.club1_score }}" type="text" class="validate" required>
+                  <input placeholder="Home Score" id="club1_score" name="club1_score" type="range" min="0" max="20" 
+                         value="{{ match.club1_score }}" class="validate" required>
                   <label for="club1_score">Home Score</label>
                 </div>
               </div>
@@ -64,10 +63,9 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                  <div class="input-field col s6">
-                    
-                    <input placeholder="Home Score" id="club1_score" name="club2_score" minlength="1" 
-                    maxlength="2" value="{{ match.club2_score }}" type="text" class="validate" required>
+                  <div class="input-field col s6">                    
+                    <input placeholder="Home Score" id="club1_score" name="club2_score" type="range" min="0" max="20" 
+                           value="{{ match.club2_score }}" class="validate" required>
                     <label for="club2_score">Out Score</label>
                   </div>
                 </div>
