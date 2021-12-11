@@ -84,8 +84,8 @@ The website has been built with a mobile-first approach and is responsive. This 
 * In all areas items can be deleted, all match items can be deleted as well when the erasing have effect on those items. For example when a league is deleted, all matches which are related have to be deleted as well.
 
 
-## Challenges
-
+## Challenge
+At a certain moment I discovered that I couldn't edit or delete anything from MongoDB anymore. I was consider to do a complete new signing in to Mongo. When I talked about that with mentor Marcel he looked a little bit to the code, there he discovered that the problem was in these codes: "mongo.db.update", "mongo.db.remove", the ones who are used in the miniproject. When it was replaced by "mongo.db.matches.update_one", "mongo.db.clubs.delete_one", everything worked again.
 
 
 ## Testing
@@ -136,11 +136,54 @@ The website has been built with a mobile-first approach and is responsive. This 
 | :---        |    :----:   |
 | When clicked on "Help" a help page should appear with info    | No errors. Works.|        |    :----:   |
 
+
 ## Responsive design
-was tested....
+Football League Database is tested on the Chrome browser and on multiple virtual mobile devices (iPhone 5, 6, 7, 8, iPad, Ipad-pro, Iphone X, Moto G4, Galaxy S5, Pixel 2 and Pixel2XL) by "inspect" to ensure compatibility and responsiveness. The actual Samsung S7 and A51 didn't give anomalies.
+
 
 ## Features Left to Implement
-
 Going forward I would like to implement the following features:
+* Login and registration feature: Enabling users to create an account and log in.
+* Storing user data, so the data is owned by one and can not be latered by many.
+* There is a bug that a club can play against itself in the "Matches" area, when filling in the forms. That should be fixed as well.
+* It's also possible to create identical clubs and leagues, that could also made better.
 
-Login and registration feature: Enabling users to create an account and log in.
+## Deployment
+
+The project is stored in a [GitHub repository](https://github.com/Kriz-hub/Football_League_Database) and hosted on Heroku.
+
+I followed the next steps to deploy Lola's Cookbook on the GitHub pages:
+
+* Log into GitHub.
+* Select kriz-hub/Football_Leage_Database in the repository list.
+* Go to Settings
+* Scroll down to the GitHub Pages section.
+* Select the Master Branch
+* On selecting Master Branch the page is automatically refreshed.
+* The link can be retrieved to the deployed website
+
+I followed the next steps to host this app on Heroku:
+
+* Created a new application using the Heroku dashboard.
+* Go to settings tab, click on 'reveal config vars' and add config vars such as IP (0.0.0.0), PORT (5000), MongoDB Name, MongoDB URI (URL with DB name and password).
+* Log into Heroku via the gitpod terminal using 'heroku login -i' and follow the on screen instructions to log in.
+* Create a requirements.txt using 'pip3 freeze > requirements.txt'.
+* Create a Procfile using 'echo web: python app.py > Procfile'.
+* Connect GitHub to Heroku in deployment method in Heroku
+* Deploy project to Heroku in the Gitpod terminal using 'git push heroku main'.
+* Open app in Heroku, succesfully deployed app.
+
+
+## Credits
+
+**Content**
+* The text content on the website was written by me.
+* The stadium image of Wembley was obtained from Google Images.
+* Making the background with a lower opacity: https://www.digitalocean.com/community/tutorials/how-to-change-a-css-background-images-opacity
+
+## Acknowledgements
+I got inspiration from The Data Centric Development mini project from the Code Institute Course: building a taskmanager application.
+
+I want to thank mentor Marcel for the tips he gave and the guiding through this project
+
+
