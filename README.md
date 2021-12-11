@@ -63,18 +63,20 @@ I created a wireframe using the program:
 | Test      | Result | 
 | :---        |    :----:   |   
 | Navbar links and homepage     | No errrors. Works.|        |    :----:   |
-| After pressing "Home" and "Add Clubs", An input field should appear with an input of minimal 3 characters and a maximum of 12, after that a new club name appear on the screen
-| No errrors. Works.|        |    :----:   |
-| When clicked on "Edit" on a created club that same input field should appear again with the old name, this can be altered to a (slightly) different name.    
-| No errrors. Works.|        |    :----:   |
+| After pressing "Home" and "Add Clubs", an input field should appear with an input of a minimal 3 characters and a maximum of 12, when filled in less then 3 characters this can't be submitted. When submitted with the button "Add Club" that new club name appear on the screen in a rectangle box.| No errrors. Works.|        |    :----:   |
+| When clicked on "Edit" on a created club that same input field should appear again with the old name, this can be altered to a (slightly) different name. | No errrors. Works.|        |    :----:   |
 | When clicked on "Delete" on a created club a warning should come with a list of matches where this deleted club appears in. When pressed "Delete Club Name" all these shown matches should be deleted also.     | No errrors. Works.|        |    :----:   |
-| After pressing "Leagues" and "Add League", An input field should appear with an input of minimal 3 characters and a maximum of 25, after that a new league name appear on the screen
-| No errrors. Works.|        |    :----:   |
-| When clicked on "Edit" on a created league that same input field should appear again with the old name, this can be altered to a (slightly) different name .   
-| No errrors. Works.|        |    :----:   |
+| After pressing "Leagues" and "Add Leagues", an input field should appear with an input of a minimal 3 characters and a maximum of 25, when filled in less then 3 characters this can't be submitted. When submitted with the button "Add League" that new league name appear on the screen in a rectangle box.| No errrors. Works.|        |    :----:   |
+| When clicked on "Edit" on a created league that same input field should appear again with the old name, this can be altered to a (slightly) different name . | No errrors. Works.|        |    :----:   |
 | When clicked on "Delete" on a created league a warning should come with a list of matches in this league. When pressed "Delete League Name" all these shown matches should be deleted also.     | No errrors. Works.|        |    :----:   |
 | When clicked on "Matches' leagues should appear if they are made.      | No errrors. Works.|        |    :----:   |
 | When clicked on a league on the button "Show and Edit Matches" all created matches appear with an "Edit" button and a "DEL" button. On this page should also appear an "Add Matches" button on the top | No errrors. Works.|        |    :----:   |
-| When clicked on "Add Matches" an input form should appear, with Date input, Club1, Club2, Score1, Score2     | No errrors. Works.|        |    :----:   |
-
-
+| When clicked on "Add Matches" an input form should appear, with Date input, Club1, Club2, Score1, Score2, this form should be validated, when some part aren't filled in it can't be submitted. | No errrors. Works.|        |    :----:   |
+| "Club1" and "Club2" are dropdown menus where clubs can be choosen which are filled in at the "Home" area.        | No errrors. Works.|        |    :----:   |
+| "Date Input" should be filled in with a calendar device which appear when pressed on.     | No errrors. Works.|        |    :----:   |
+| The Form should me submitted when pressed on the button "Add Match". Now the match should be added and the page should return to the beginning of the "Matches" area     | No errrors. Works.|        |    :----:   |
+| When pressed "Edit" on existing matches the form should appear with filled in values, and with the same validation rules when pressed on "Add Matches" in the "Matches" area    | No errrors. Works.|        |    :----:   |
+| When clicked on "Delete" on existing matches a warning should come that the match is about to be erased. When pressed on the button "Delete Match" this match should be deleted.     | No errrors. Works.|        |    :----:   |
+| When clicked on "Rankings' leagues should appear if they are made.      | No errrors. Works.|        |    :----:   |
+| When clicked on a league on the button "Show ranking" an internal count should be made when matches are filled in. According to FIFA football rules clubs get 3 points when they win and get 1 point when the loose. When clubs have the same point amount the goal difference determines the result of the ranking. This ranking should be displayed. |  No errrors. Works.|        |    :----:   |
+| When clicked on "Help" a help page should appear with info    | No errrors. Works.|        |    :----:   |
