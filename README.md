@@ -65,10 +65,24 @@ I created a wireframe using the program [Balsamic Wireframes](https://balsamiq.c
 * Heroku
 
 ## Features
-
 The website has been built with a mobile-first approach and is responsive. This is achieved by using the front end framework from Materialize and custom-written css.
 
 ## CRUD functions
+
+**Users can create Clubs, Leagues and Matches to the database. (Create)**
+* In the area "Clubs" and "Leagues" allows the user to create those.
+* The area of "Matches" allows the user to enter fields Date, Club1, Club2, Score Club1, Score Club2 to create a match
+
+**Users can browse through all Clubs, Leagues and Matches contained in the database. (Read)**
+* The areas "Clubs" and "Leagues" and "Matches" allows the user to look back all of them what is added.
+
+**Users can edit Clubs, Leagues and Matches in the database. (Update)**
+* In the area "Clubs" and "Leagues" allows the user to click on the created item to alter there names.
+* The area of "Matches" allows the user to later fields Date, Club1, Club2, Score Club1, Score Club2 when he clicks on an existing match.
+
+**Users can delete Clubs, Leagues and Matches in the database. (Delete)**
+* In all areas items can be deleted, all match items can be deleted as well when the erasing have effect on those items. For example when a league is deleted, all matches which are related have to be deleted as well.
+
 
 ## Challenges
 
